@@ -1,0 +1,9 @@
+{
+	"version": 2,
+	"name": "marker-docs",
+	"alias": "marker-docs",
+	"public": false,
+	"builds": [
+		{ "src": "html/**.html", "use": "@now/static" }
+	]
+}

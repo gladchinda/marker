@@ -1,0 +1,512 @@
+<html><head>
+		<meta charset="utf-8">
+		<style type="text/css">@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i");@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700");*{padding:0;margin:0;box-sizing:border-box}body{font-family:'Open Sans', 'Roboto', Avenir, Flutterwave, sans-serif !important;color:#4a4a4a !important;width:720px;margin:0 auto;font-weight:300}html{font-size:10px !important}code{color:rgba(75,0,130,0.6);font-weight:400;font-size:1.25rem;line-height:1.2;font-family:'Fira Mono', 'Roboto Mono', monospace !important}code.code--inline{display:inline-block;background:rgba(75,0,130,0.04);padding:0.3rem 0.5rem;border:1px solid rgba(75,0,130,0.4);border-radius:0.5rem;box-shadow:0 1px 0 -1px rgba(75,0,130,0.85)}.strong>code.code--inline{font-weight:900}pre{display:block;margin:4rem auto;border:1px solid #cecece !important;border-radius:10px;overflow:hidden}pre>code{font-size:1.25rem;line-height:1.75;display:block;padding:2.5rem 4rem;white-space:pre;font-weight:400;color:initial;position:relative;overflow:auto;font-family:'Roboto Mono', monospace !important}.heading>.heading__text{display:none}.heading--h1.heading>.heading__text,.heading--h2.heading>.heading__text,.heading--h3.heading>.heading__text,.heading--h4.heading>.heading__text,.heading--h5.heading>.heading__text,.heading--h6.heading>.heading__text{font-weight:400;display:block;line-height:1.15 !important}.heading--h1.heading{margin:3rem 0}.heading--h1.heading>.heading__text{font-size:4.8rem;font-weight:300}.heading--h2.heading{margin:2.25rem 0}.heading--h2.heading>.heading__text{font-size:3.6rem;font-weight:300}.heading--h3.heading{margin:1.75rem 0}.heading--h3.heading>.heading__text{font-size:2.8rem;font-weight:500}.heading--h4.heading{margin:1.5rem 0}.heading--h4.heading>.heading__text{font-size:2.2rem;font-weight:500}.heading--h5.heading{margin:1.25rem 0}.heading--h5.heading>.heading__text{font-size:1.8rem;font-weight:600}.heading--h6.heading{margin:1rem 0}.heading--h6.heading>.heading__text{font-size:1.4rem;font-weight:900}.line--hr{width:0 !important;height:0 !important;display:none !important}.line--hr.line{width:100% !important;height:1px !important;position:relative;display:block !important;margin:5rem 0 !important}.line--hr.line>hr.line__hr{height:1px;border:none !important;outline:none !important}.line--hr.line::after{content:'';display:block;position:absolute;height:0;width:100%;top:0;border-bottom:1px solid #cecece !important}.image img,.image figcaption{display:none !important}.image>img.image__img{display:inline-block !important;border-radius:5px;border:none !important}.image.image--block{width:100%;display:block !important;margin:5rem auto !important}.image.image--block>img.image__img{display:block !important;margin:auto;position:relative;max-width:100%;height:auto;border-radius:10px}.image.image--block>figcaption.image__caption{display:block !important;margin:2rem auto 0;text-align:center;font-style:italic;font-weight:300;font-size:1.5rem;line-height:1.25;color:#949494;position:relative;width:70%}.image.image--block.image--border>img.image__img{border:1px solid #cecece !important}.image.image--block.image--square>img.image__img{border-radius:0 !important}p,ul,ol{margin:4rem 0;font-size:1.6rem;line-height:1.75;font-weight:400;font-family:'Open Sans', Avenir, sans-serif !important}ul,ol{list-style-position:inside;padding:0 0 0 3rem}a{color:#4a4a4a}li{margin:1rem 0}.heading{margin-top:7.5rem !important}.heading--h1{color:initial !important;margin-top:10rem !important}</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js" integrity="sha256-iq71rXEe/fvjCUP9AfLY0cKudQuKAQywiUpXkRFSkLc=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+		<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+	</head><body><h1 class="heading heading--h1"><span class="heading__text">Build a Custom Toggle Switch with React</span></h1><p>Building web applications usually involves making provisions for user interactions. One of the major ways of making provision for user interactions is through forms. Different form components exist for taking different kinds of input from the user. For example, a password component takes sensitive information from a user and masks the information so that it is not visible.</p>
+<p>Most times, the information you need to get from a user is <strong class="strong">boolean-like</strong> - for example: <em class="em">yes</em> or <em class="em">no</em>, <em class="em">true</em> or <em class="em">false</em>, <em class="em">enable</em> or <em class="em">disable</em>, <em class="em">on</em> or <em class="em">off</em>, etc. Traditionally, the checkbox form component is used for getting these kinds of input. However, in modern interface designs, toggle switches are commonly used as checkbox replacements, although there are some accessibility concerns.</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/VmaxGKX.png" alt="Checkbox vs Toggle Switch" class="image__img" title="Checkbox vs Toggle Switch"><figcaption class="image__caption">Checkbox vs Toggle Switch</figcaption></figure><p></p>
+<p>In this tutorial, we will see how to build a custom toggle switch component with React. At the end of the tutorial, we would have built a very simple demo React app that uses our custom toggle switch component.</p>
+<p>Here is a demo of the final application we will be building in this tutorial.</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/5ePljO1.gif" alt="Application Demo" class="image__img" title="Application Demo"><figcaption class="image__caption">Application Demo</figcaption></figure><p></p>
+<h2 class="heading heading--h2"><span class="heading__text">Prerequisites</span></h2><p>Before getting started, you need to ensure that you have <a href="https://nodejs.org/en/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Node</a> already installed on your machine. I will also recommend that you install the <a href="https://yarnpkg.com/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Yarn</a> package manager on your machine, since we will be using it for package management instead of <a href="https://npmjs.com/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">npm</a> that ships with Node. You can follow this <a href="https://yarnpkg.com/lang/en/docs/install/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Yarn installation guide</a> to install <code class="code--inline">yarn</code> on your machine.</p>
+<p>We will create the boilerplate code for our React app using the <a href="https://github.com/facebook/create-react-app" target="_blank" class="link link--a" rel="nofollow noopener noreferrer"><code class="code--inline">create-react-app</code></a> command-line package. You also need to ensure that it is installed globally on your machine. If you are using <code class="code--inline">npm &gt;= 5.2</code> then you may not need to install <code class="code--inline">create-react-app</code> as a global dependency since we can use the <code class="code--inline">npx</code> command.</p>
+<p>Finally, this tutorial assumes that you are already familiar with React. If that is not the case, you can check the <a href="https://reactjs.org/docs/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">React Documentation</a> to learn more about React.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Getting Started</span></h2><h3 class="heading heading--h3"><span class="heading__text">Create new Application</span></h3><p>Start a new React application using the following command. You can name the application however you desire.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">create-react-app</span> <span class="hljs-string">react-toggle-</span><span class="hljs-string">switch</span></code></pre>
+<blockquote>
+<p><strong class="strong"><code class="code--inline">npm &gt;= 5.2</code></strong></p>
+<p>If you are using <code class="code--inline">npm</code> version <code class="code--inline">5.2</code> or higher, it ships with an additional <code class="code--inline">npx</code> binary. Using the <code class="code--inline">npx</code> binary, you don&apos;t need to install <code class="code--inline">create-react-app</code> globally on your machine. You can start a new React application with this simple command:</p>
+<pre><code class="language-sh"><span class="hljs-string">npx </span><span class="hljs-built_in">create-react-app</span> <span class="hljs-string">react-toggle-</span><span class="hljs-string">switch</span></code></pre>
+</blockquote>
+<h3 class="heading heading--h3"><span class="heading__text">Install Dependencies</span></h3><p>Next, we will install the dependencies we need for our application. Run the following command to install the required dependencies.</p>
+<pre><code class="language-sh">yarn add lodash bootstrap prop-types classnames
+yarn add -D npm-run-all <span class="hljs-keyword">node</span><span class="hljs-title">-sass-chokidar</span></code></pre>
+<p>We have installed <code class="code--inline">node-sass-chokidar</code> as a development dependency for our application to enable us use SASS. For more information about this, see <a href="https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">this guide</a>.</p>
+<h3 class="heading heading--h3"><span class="heading__text">Modify the npm Scripts</span></h3><p>Edit the <code class="code--inline">package.json</code> file and modify the <code class="code--inline">scripts</code> section to look like the following:</p>
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;start:js&quot;: &quot;react-scripts start&quot;,
+  &quot;<span class="hljs-keyword">build</span>:js<span class="hljs-string">&quot;: &quot;</span>react-scripts <span class="hljs-keyword">build</span><span class="hljs-string">&quot;,
+  &quot;</span><span class="hljs-keyword">start</span><span class="hljs-string">&quot;: &quot;</span>npm-run-<span class="hljs-keyword">all</span> -p watch:css <span class="hljs-keyword">start</span>:js<span class="hljs-string">&quot;,
+  &quot;</span><span class="hljs-keyword">build</span><span class="hljs-string">&quot;: &quot;</span>npm-run-<span class="hljs-keyword">all</span> <span class="hljs-keyword">build</span>:css <span class="hljs-keyword">build</span>:js<span class="hljs-string">&quot;,
+  &quot;</span>test<span class="hljs-string">&quot;: &quot;</span>react-scripts test --env=jsdom<span class="hljs-string">&quot;,
+  &quot;</span>eject<span class="hljs-string">&quot;: &quot;</span>react-scripts eject<span class="hljs-string">&quot;,
+  &quot;</span><span class="hljs-keyword">build</span>:css<span class="hljs-string">&quot;: &quot;</span>node-sass-chokidar --<span class="hljs-keyword">include</span>-<span class="hljs-keyword">path</span> ./src --<span class="hljs-keyword">include</span>-<span class="hljs-keyword">path</span> ./node_modules src/ -o src/<span class="hljs-string">&quot;,
+  &quot;</span>watch:css<span class="hljs-string">&quot;: &quot;</span>npm run <span class="hljs-keyword">build</span>:css &amp;&amp; node-sass-chokidar --<span class="hljs-keyword">include</span>-<span class="hljs-keyword">path</span> ./src --<span class="hljs-keyword">include</span>-<span class="hljs-keyword">path</span> ./node_modules src/ -o src/ --watch --recursive<span class="hljs-string">&quot;
+}</span></code></pre>
+<h3 class="heading heading--h3"><span class="heading__text">Include Bootstrap CSS</span></h3><p>We installed the <code class="code--inline">bootstrap</code> package as a dependency for our application since we will be needing some default styling. To include Bootstrap in the application, edit the <code class="code--inline">src/index.js</code> file and add the following line before every other <code class="code--inline">import</code> statement.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;bootstrap/dist/css/bootstrap.min.css&quot;</span>;</code></pre>
+<h3 class="heading heading--h3"><span class="heading__text">Start the Application</span></h3><p>Start the application by running the following command with <code class="code--inline">yarn</code>:</p>
+<pre><code class="language-sh">yarn <span class="hljs-literal">start</span></code></pre>
+<p>The application is now started and development can begin. Notice that a browser tab has been opened for you with <em class="em">live reloading</em> functionality to keep in sync with changes in the application as you develop.</p>
+<p>At this point, the application view should look like the following screenshot:</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/7aJLTHt.png" alt="SInitial View" class="image__img" title="Initial View"><figcaption class="image__caption">Initial View</figcaption></figure><p></p>
+<h2 class="heading heading--h2"><span class="heading__text">The ToggleSwitch Component</span></h2><p>Create a new directory named <code class="code--inline">components</code> inside the <code class="code--inline">src</code> directory of your project. Next, create another new directory named <code class="code--inline">ToggleSwitch</code> inside the <code class="code--inline">components</code> directory. Next, create two new files inside <code class="code--inline">src/components/ToggleSwitch</code>, namely: <code class="code--inline">index.js</code> and <code class="code--inline">index.scss</code>.</p>
+<p>Add the following content into the <code class="code--inline">src/components/ToggleSwitch/index.js</code> file.</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/components/ToggleSwitch/index.js */</span>
+
+<span class="hljs-keyword">import</span> <span class="hljs-type">PropTypes</span> from <span class="hljs-symbol">&apos;prop</span>-types&apos;;
+<span class="hljs-keyword">import</span> classnames from <span class="hljs-symbol">&apos;classname</span>s&apos;;
+<span class="hljs-keyword">import</span> isString from <span class="hljs-symbol">&apos;lodash</span>/isString&apos;;
+<span class="hljs-keyword">import</span> <span class="hljs-type">React</span>, { <span class="hljs-type">Component</span> } from <span class="hljs-symbol">&apos;reac</span>t&apos;;
+<span class="hljs-keyword">import</span> isBoolean from <span class="hljs-symbol">&apos;lodash</span>/isBoolean&apos;;
+<span class="hljs-keyword">import</span> isFunction from <span class="hljs-symbol">&apos;lodash</span>/isFunction&apos;;
+<span class="hljs-keyword">import</span> &apos;./index.css&apos;;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToggleSwitch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{}
+
+<span class="hljs-type">ToggleSwitch</span>.propTypes = {
+  theme: <span class="hljs-type">PropTypes</span>.string,
+  enabled: <span class="hljs-type">PropTypes</span>.oneOfType([
+    <span class="hljs-type">PropTypes</span>.bool,
+    <span class="hljs-type">PropTypes</span>.func
+  ]),
+  onStateChanged: <span class="hljs-type">PropTypes</span>.func
+}
+
+export <span class="hljs-keyword">default</span> <span class="hljs-type">ToggleSwitch</span>;</code></pre>
+<p>In this code snippet, we created the <code class="code--inline">ToggleSwitch</code> component and added typechecks for some of its props.</p>
+<ul>
+<li><code class="code--inline">theme</code> - is a <code class="code--inline">string</code> indicating the style and color to be used for the toggle switch.</li>
+<li><code class="code--inline">enabled</code> - can be either a <code class="code--inline">boolean</code> or a <code class="code--inline">function</code> that returns a <code class="code--inline">boolean</code>, and it determines the state of the toggle switch when it is rendered.</li>
+<li><code class="code--inline">onStateChanged</code> - is a callback function that will be called when the state of the toggle switch changes. This is useful for triggering actions on the parent component when the switch is toggled.</li>
+</ul>
+<h3 class="heading heading--h3"><span class="heading__text">Initializing the ToggleSwitch State</span></h3><p>In the following code snippet, we initialize the state of the <code class="code--inline">ToggleSwitch</code> component and define some component methods for getting the state of the toggle switch.</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/components/ToggleSwitch/index.js */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToggleSwitch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  state = { enabled: <span class="hljs-keyword">this</span>.enabledFromProps() }
+
+  isEnabled = () =&gt; <span class="hljs-keyword">this</span>.state.enabled
+
+  enabledFromProps() {
+    let { enabled } = <span class="hljs-keyword">this</span>.props;
+
+    <span class="hljs-comment">// If enabled is a function, invoke the function</span>
+    enabled = isFunction(enabled) ? enabled() : enabled;
+
+    <span class="hljs-comment">// Return enabled if it is a boolean, otherwise false</span>
+    <span class="hljs-keyword">return</span> isBoolean(enabled) &amp;&amp; enabled;
+  }
+
+}</code></pre>
+<p>Here, the <code class="code--inline">enabledFromProps()</code> method resolves the <code class="code--inline">enabled</code> prop that was passed and returns a <code class="code--inline">boolean</code> indicating if the switch should be enabled when it is rendered. If <code class="code--inline">enabled</code> prop is a <code class="code--inline">boolean</code>, it returns the boolean value. If it is a <code class="code--inline">function</code>, it first invokes the function before determining if the returned value is a boolean. Otherwise, it returns <code class="code--inline">false</code>.</p>
+<p>Notice that we used the return value from <code class="code--inline">enabledFromProps()</code> to set the initial <code class="code--inline">enabled</code> state. Also, we have added the <code class="code--inline">isEnabled()</code> method to get the current <code class="code--inline">enabled</code> state.</p>
+<h3 class="heading heading--h3"><span class="heading__text">Toggling the ToggleSwitch</span></h3><p>Let&apos;s go ahead and add the method that actually toggles the switch when it is clicked.</p>
+<pre><code class="language-js">/* src/components/ToggleSwitch/index.js */
+
+class ToggleSwitch extends Component {
+
+  // ...other class members here
+
+  toggleSwitch = evt =&gt; {
+    evt.persist();
+    evt.preventDefault();
+
+    const { <span class="hljs-keyword">on</span>Click, <span class="hljs-keyword">on</span>StateChanged } = this.props;
+
+    this.<span class="hljs-built_in">set</span>State({ enabled: !this.<span class="hljs-keyword">state</span>.enabled }, () =&gt; {
+      const <span class="hljs-keyword">state</span> = this.<span class="hljs-keyword">state</span>;
+
+      // Augument the event object with SWITCH_STATE
+      const switchEvent = Object.assign(evt, { SWITCH_STATE: <span class="hljs-keyword">state</span> });
+
+      // Execute the callback functions
+      isFunction(<span class="hljs-keyword">on</span>Click) &amp;&amp; <span class="hljs-keyword">on</span>Click(switchEvent);
+      isFunction(<span class="hljs-keyword">on</span>StateChanged) &amp;&amp; <span class="hljs-keyword">on</span>StateChanged(<span class="hljs-keyword">state</span>);
+    });
+  }
+
+}</code></pre>
+<p>Since this method will be triggered as a <code class="code--inline">click</code> event listener, we have declared it with the <code class="code--inline">evt</code> parameter. First, this method toggles the current <code class="code--inline">enabled</code> state using the logical <code class="code--inline">NOT</code> (<code class="code--inline">!</code>) operator. When the state has been updated, it triggers the callback functions passed to the <code class="code--inline">onClick</code> and <code class="code--inline">onStateChanged</code> props.</p>
+<p>Notice that since <code class="code--inline">onClick</code> requires an event as its first argument, we augmented the event with an additional <code class="code--inline">SWITCH_STATE</code> property containing the new state object. However, the <code class="code--inline">onStateChanged</code> callback is called with the new state object.</p>
+<h3 class="heading heading--h3"><span class="heading__text">Rendering the ToggleSwitch</span></h3><p>Finally, let&apos;s implement the <code class="code--inline">render()</code> method of the <code class="code--inline">ToggleSwitch</code> component.</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/components/ToggleSwitch/index.js */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToggleSwitch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  <span class="hljs-comment">// ...other class members here</span>
+
+  render() {
+    <span class="hljs-keyword">const</span> { enabled } = <span class="hljs-keyword">this</span>.state;
+
+    <span class="hljs-comment">// Isolate special props and store the remaining as restProps</span>
+    <span class="hljs-keyword">const</span> { <span class="hljs-attr">enabled</span>: _enabled, theme, onClick, className, onStateChanged, ...restProps } = <span class="hljs-keyword">this</span>.props;
+
+    <span class="hljs-comment">// Use default as a fallback theme if valid theme is not passed</span>
+    <span class="hljs-keyword">const</span> switchTheme = (theme &amp;&amp; isString(theme)) ? theme : <span class="hljs-string">&apos;default&apos;</span>;
+
+    <span class="hljs-keyword">const</span> switchClasses = classnames(
+      <span class="hljs-string">`switch switch--<span class="hljs-subst">${switchTheme}</span>`</span>,
+      className
+    )
+
+    <span class="hljs-keyword">const</span> togglerClasses = classnames(
+      <span class="hljs-string">&apos;switch-toggle&apos;</span>,
+      <span class="hljs-string">`switch-toggle--<span class="hljs-subst">${enabled ? <span class="hljs-string">&apos;on&apos;</span> : <span class="hljs-string">&apos;off&apos;</span>}</span>`</span>
+    )
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{switchClasses}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.toggleSwitch}</span> {<span class="hljs-attr">...restProps</span>}&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{togglerClasses}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+  }
+
+}</code></pre>
+<p>A lot is going on in this <code class="code--inline">render()</code> method - so let&apos;s try to break it down.</p>
+<ol>
+<li>First, the <code class="code--inline">enabled</code> state is destructured from the component state.</li>
+<li>Next, we destructure the component props and extract the <code class="code--inline">restProps</code> that will be passed down to the switch. This enables us to intercept and isolate the special props of the component.</li>
+<li>Next, we use <strong class="strong">classnames</strong> to construct the classes for the switch and the inner toggler, based on the <code class="code--inline">theme</code> and the <code class="code--inline">enabled</code> state of the component.</li>
+<li>Finally, we render the DOM elements with the appropriate props and classes. Notice that we passed in <code class="code--inline">this.toggleSwitch</code> as the <code class="code--inline">click</code> event listener on the switch.</li>
+</ol>
+<h2 class="heading heading--h2"><span class="heading__text">Styling the ToggleSwitch</span></h2><p>Now that we have the <code class="code--inline">ToggleSwitch</code> component and its required functionality, we will go ahead and write the styles for the toggle switch.</p>
+<p>Add the following code snippet to the <code class="code--inline">src/components/ToggleSwitch/index.scss</code> file you created earlier:</p>
+<pre><code class="language-scss"><span class="hljs-comment">/* src/components/ToggleSwitch/index.scss */</span>
+
+<span class="hljs-comment">// DEFAULT COLOR VARIABLES</span>
+
+<span class="hljs-variable">$ball-color</span>: <span class="hljs-number">#ffffff</span>;
+<span class="hljs-variable">$active-color</span>: <span class="hljs-number">#62c28e</span>;
+<span class="hljs-variable">$inactive-color</span>: <span class="hljs-number">#cccccc</span>;
+
+<span class="hljs-comment">// DEFAULT SIZING VARIABLES</span>
+
+<span class="hljs-variable">$switch-size</span>: <span class="hljs-number">32px</span>;
+<span class="hljs-variable">$ball-spacing</span>: <span class="hljs-number">2px</span>;
+<span class="hljs-variable">$stretch-factor</span>: <span class="hljs-number">1.625</span>;
+
+<span class="hljs-comment">// DEFAULT CLASS VARIABLE</span>
+
+<span class="hljs-variable">$switch-class</span>: <span class="hljs-string">&apos;switch-toggle&apos;</span>;
+
+
+<span class="hljs-comment">/* SWITCH MIXIN */</span>
+
+@<span class="hljs-keyword">mixin</span> switch(<span class="hljs-variable">$size</span>: <span class="hljs-variable">$switch-size</span>, <span class="hljs-variable">$spacing</span>: <span class="hljs-variable">$ball-spacing</span>, <span class="hljs-variable">$stretch</span>: <span class="hljs-variable">$stretch-factor</span>, <span class="hljs-variable">$color</span>: <span class="hljs-variable">$active-color</span>, <span class="hljs-variable">$class</span>: <span class="hljs-variable">$switch-class</span>) {}</code></pre>
+<p>Here, we defined some default variables and created a <code class="code--inline">switch</code> mixin. In the next section, we will we will implement the mixin, but first, let&apos;s examine the parameters of the <code class="code--inline">switch</code> mixin:</p>
+<ul>
+<li><strong class="strong"><code class="code--inline">$size</code></strong> - The height of the switch element. It must have a length unit. It defaults to <code class="code--inline">32px</code>.</li>
+<li><code class="code--inline">$spacing</code> - The space between the circular ball and the switch container. It must have a length unit. It defaults to <code class="code--inline">2px</code>.</li>
+<li><code class="code--inline">$stretch</code> - A factor used to determine the extent to which the width of the switch element should be stretched. It must be a unitless number. It defaults to <code class="code--inline">1.625</code>.</li>
+<li><code class="code--inline">$color</code> - The color of the switch when in active state. This must be a valid color value. Note that the circular ball is always white irrespective of this color.</li>
+<li><code class="code--inline">$class</code> - The base class for identifying the switch. This is used to dynamically create the state classes of the switch. It defaults to <code class="code--inline">&apos;switch-toggle&apos;</code>. Hence, the default state classes are <code class="code--inline">.switch-toggle--on</code> and <code class="code--inline">.switch-toggle--off</code>.</li>
+</ul>
+<h3 class="heading heading--h3"><span class="heading__text">Implementing the Switch Mixin</span></h3><p>Here is the implementation of the <code class="code--inline">switch</code> mixin:</p>
+<pre><code class="language-scss"><span class="hljs-comment">/* src/components/ToggleSwitch/index.scss */</span>
+
+@<span class="hljs-keyword">mixin</span> switch(<span class="hljs-variable">$size</span>: <span class="hljs-variable">$switch-size</span>, <span class="hljs-variable">$spacing</span>: <span class="hljs-variable">$ball-spacing</span>, <span class="hljs-variable">$stretch</span>: <span class="hljs-variable">$stretch-factor</span>, <span class="hljs-variable">$color</span>: <span class="hljs-variable">$active-color</span>, <span class="hljs-variable">$class</span>: <span class="hljs-variable">$switch-class</span>) {
+
+  <span class="hljs-comment">// SELECTOR VARIABLES</span>
+
+  <span class="hljs-variable">$self</span>: <span class="hljs-string">&apos;.&apos;</span> + <span class="hljs-variable">$class</span>;
+  <span class="hljs-variable">$on</span>: #{<span class="hljs-variable">$self</span>}--on;
+  <span class="hljs-variable">$off</span>: #{<span class="hljs-variable">$self</span>}--off;
+
+  <span class="hljs-comment">// SWITCH VARIABLES</span>
+
+  <span class="hljs-variable">$active-color</span>: <span class="hljs-variable">$color</span>;
+  <span class="hljs-variable">$switch-size</span>: <span class="hljs-variable">$size</span>;
+  <span class="hljs-variable">$ball-spacing</span>: <span class="hljs-variable">$spacing</span>;
+  <span class="hljs-variable">$stretch-factor</span>: <span class="hljs-variable">$stretch</span>;
+  <span class="hljs-variable">$ball-size</span>: <span class="hljs-variable">$switch-size</span> - (<span class="hljs-variable">$ball-spacing</span> * <span class="hljs-number">2</span>);
+  <span class="hljs-variable">$ball-slide-size</span>: (<span class="hljs-variable">$switch-size</span> * (<span class="hljs-variable">$stretch-factor</span> - <span class="hljs-number">1</span>) + <span class="hljs-variable">$ball-spacing</span>);
+
+  <span class="hljs-comment">// SWITCH STYLES</span>
+
+  <span class="hljs-attribute">height</span>: <span class="hljs-variable">$switch-size</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-variable">$switch-size</span> * <span class="hljs-variable">$stretch-factor</span>;
+  <span class="hljs-attribute">cursor</span>: pointer <span class="hljs-meta">!important</span>;
+  user-<span class="hljs-selector-tag">select</span>: none <span class="hljs-meta">!important</span>;
+  <span class="hljs-attribute">position</span>: relative <span class="hljs-meta">!important</span>;
+  <span class="hljs-attribute">display</span>: inline-block;
+
+  &amp;#{<span class="hljs-variable">$on</span>},
+  &amp;#{<span class="hljs-variable">$off</span>} {
+
+    &amp;::before,
+    &amp;::after {
+      <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;&apos;</span>;
+      <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+      <span class="hljs-attribute">position</span>: absolute <span class="hljs-meta">!important</span>;
+    }
+
+    &amp;::before {
+      <span class="hljs-attribute">height</span>: inherit;
+      <span class="hljs-attribute">width</span>: inherit;
+      <span class="hljs-attribute">border-radius</span>: <span class="hljs-variable">$switch-size</span> / <span class="hljs-number">2</span>;
+      will-change: background;
+      <span class="hljs-attribute">transition</span>: background .<span class="hljs-number">4s</span> .<span class="hljs-number">3s</span> ease-out;
+    }
+
+    &amp;::after {
+      <span class="hljs-attribute">top</span>: <span class="hljs-variable">$ball-spacing</span>;
+      <span class="hljs-attribute">height</span>: <span class="hljs-variable">$ball-size</span>;
+      <span class="hljs-attribute">width</span>: <span class="hljs-variable">$ball-size</span>;
+      <span class="hljs-attribute">border-radius</span>: <span class="hljs-variable">$ball-size</span> / <span class="hljs-number">2</span>;
+      <span class="hljs-attribute">background</span>: <span class="hljs-variable">$ball-color</span> <span class="hljs-meta">!important</span>;
+      will-change: transform;
+      <span class="hljs-attribute">transition</span>: transform .<span class="hljs-number">4s</span> ease-out;
+    }
+
+  }
+
+  &amp;#{<span class="hljs-variable">$on</span>} {
+    &amp;::before {
+      <span class="hljs-attribute">background</span>: <span class="hljs-variable">$active-color</span> <span class="hljs-meta">!important</span>;
+    }
+    &amp;::after {
+      <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-variable">$ball-slide-size</span>);
+    }
+  }
+
+  &amp;#{<span class="hljs-variable">$off</span>} {
+    &amp;::before {
+      <span class="hljs-attribute">background</span>: <span class="hljs-variable">$inactive-color</span> <span class="hljs-meta">!important</span>;
+    }
+    &amp;::after {
+      <span class="hljs-attribute">transform</span>: translateX(<span class="hljs-variable">$ball-spacing</span>);
+    }
+  }
+
+}</code></pre>
+<p>In this mixin, we start by setting some variables based on the parameters passed to the mixin. Then we go ahead, creating the styles. Notice that we are using the <code class="code--inline">::after</code> and <code class="code--inline">::before</code> pseudo-elements to dynamically create the components of the switch. <code class="code--inline">::before</code> creates the switch container while <code class="code--inline">::after</code> creates the circular ball.</p>
+<p>Also notice how we constructed the state classes from the base class and assign them to variables. The <code class="code--inline">$on</code> variable maps to the selector for the enabled state, while the <code class="code--inline">$off</code> variable maps to the selector for the disabled state.</p>
+<p>We also ensured that the base class (<code class="code--inline">.switch-toggle</code>) must be used together with a state class (<code class="code--inline">.switch-toggle--on</code> or <code class="code--inline">.switch-toggle--off</code>) for the styles to be available. Hence, we used the <code class="code--inline">&amp;#{$on}</code> and <code class="code--inline">&amp;#{$off}</code> selectors.</p>
+<h3 class="heading heading--h3"><span class="heading__text">Creating Themed Switches</span></h3><p>Now that we have our <code class="code--inline">switch</code> mixin, we will continue to create some themed styles for the toggle switch. We will create two themes, namely: <code class="code--inline">default</code> and <code class="code--inline">graphite-small</code>.</p>
+<p>Append the following code snippet to the <code class="code--inline">src/components/ToggleSwitch/index.scss</code> file.</p>
+<pre><code class="language-scss"><span class="hljs-comment">/* src/components/ToggleSwitch/index.scss */</span>
+
+@function get-<span class="hljs-keyword">switch</span>-class($selector) {
+
+  <span class="hljs-comment">// First parse the selector using `selector-parse`</span>
+  <span class="hljs-comment">// Extract the first selector in the first list using `nth` twice</span>
+  <span class="hljs-comment">// Extract the first simple selector using `simple-selectors` and `nth`</span>
+  <span class="hljs-comment">// Extract the class name using `str-slice`</span>
+
+  @return str-slice(nth(simple-selectors(nth(nth(selector-parse($selector), <span class="hljs-number">1</span>), <span class="hljs-number">1</span>)), <span class="hljs-number">1</span>), <span class="hljs-number">2</span>);
+
+}
+
+.<span class="hljs-keyword">switch</span> {
+  $self: &amp;;
+  $toggle: #{$self}-<span class="hljs-keyword">toggle</span>;
+  $class: get-<span class="hljs-keyword">switch</span>-class($toggle);
+
+  <span class="hljs-comment">// default theme</span>
+  &amp;#{$self}--<span class="hljs-keyword">default</span> &gt; #{$toggle} {
+
+    <span class="hljs-comment">// Always pass the $class to the mixin</span>
+    @include <span class="hljs-keyword">switch</span>($class: $class);
+
+  }
+
+  <span class="hljs-comment">// graphite-small theme</span>
+  &amp;#{$self}--graphite-small &gt; #{$toggle} {
+
+    <span class="hljs-comment">// A smaller switch with a `gray` active color</span>
+    <span class="hljs-comment">// Always pass the $class to the mixin</span>
+    @include <span class="hljs-keyword">switch</span>($color: gray, $size: <span class="hljs-number">20</span>px, $class: $class);
+
+  }
+}</code></pre>
+<p>Here we first create a Sass function named <code class="code--inline">get-switch-class</code> that takes a <code class="code--inline">$selector</code> as parameter. It runs the <code class="code--inline">$selector</code> through a chain of Sass functions and tries to extract the first class name. For example, if it receives:</p>
+<ul>
+<li><code class="code--inline">.class-1 .class-2, .class-3 .class-4</code>, it returns <code class="code--inline">class-1</code>.</li>
+<li><code class="code--inline">.class-5.class-6 &gt; .class-7.class-8</code>, it returns <code class="code--inline">class-5</code>.</li>
+</ul>
+<p>Next, we define styles for the <code class="code--inline">.switch</code> class. We dynamically set the toggle class to <code class="code--inline">.switch-toggle</code> and assign it to the <code class="code--inline">$toggle</code> variable. Notice that we assign the class name returned from the <code class="code--inline">get-switch-class()</code> function call to the <code class="code--inline">$class</code> variable. Finally, we include the <code class="code--inline">switch</code> mixin with the necessary parameters to create the theme classes.</p>
+<p>Notice that the structure of the selector for the themed switch looks like this: <code class="code--inline">&amp;#{$self}--default &gt; #{$toggle}</code> (<em class="em">using the default theme as an example</em>). Putting everything together, this means that the elements hierarchy should look like the following in order for the styles to be applied:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- Use the default theme: switch--default  --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">element</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch switch--default&quot;</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- The switch is in enabled state: switch-toggle--on --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">element</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch-toggle switch-toggle--on&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">element</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">element</span>&gt;</span></code></pre>
+<p>Here is a simple demo showing what the toggle switch themes look like:</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/k9DI3Eg.gif" alt="Switch Themes" class="image__img" title="Switch Themes"><figcaption class="image__caption">Switch Themes</figcaption></figure><p></p>
+<h2 class="heading heading--h2"><span class="heading__text">Building the Sample App</span></h2><p>Now that we have the <code class="code--inline">ToggleSwitch</code> React component with the required styling, let&apos;s go ahead and start creating the sample app we saw at the beginning section.</p>
+<p>Modify the <code class="code--inline">src/App.js</code> file to look like the following code snippet:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/App.js */</span>
+
+<span class="hljs-keyword">import</span> classnames <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;classnames&apos;</span>;
+<span class="hljs-keyword">import</span> snakeCase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;lodash/snakeCase&apos;</span>;
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> Switch <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./components/ToggleSwitch&apos;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;./App.css&apos;</span>;
+
+<span class="hljs-comment">// List of activities that can trigger notifications</span>
+<span class="hljs-keyword">const</span> ACTIVITIES = [
+  <span class="hljs-string">&apos;News Feeds&apos;</span>, <span class="hljs-string">&apos;Likes and Comments&apos;</span>, <span class="hljs-string">&apos;Live Stream&apos;</span>, <span class="hljs-string">&apos;Upcoming Events&apos;</span>,
+  <span class="hljs-string">&apos;Friend Requests&apos;</span>, <span class="hljs-string">&apos;Nearby Friends&apos;</span>, <span class="hljs-string">&apos;Birthdays&apos;</span>, <span class="hljs-string">&apos;Account Sign-In&apos;</span>
+];
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  <span class="hljs-comment">// Initialize app state, all activities are enabled by default</span>
+  state = { <span class="hljs-attr">enabled</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">only</span>: ACTIVITIES.map(snakeCase) }
+
+  toggleNotifications = <span class="hljs-function">(<span class="hljs-params">{ enabled }</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> { only } = <span class="hljs-keyword">this</span>.state;
+    <span class="hljs-keyword">this</span>.setState({ enabled, <span class="hljs-attr">only</span>: enabled ? only : ACTIVITIES.map(snakeCase) });
+  }
+
+  render() {
+    <span class="hljs-keyword">const</span> { enabled } = <span class="hljs-keyword">this</span>.state;
+
+    <span class="hljs-keyword">const</span> headingClasses = classnames(
+      <span class="hljs-string">&apos;font-weight-light h2 mb-0 pl-4&apos;</span>,
+      enabled ? <span class="hljs-string">&apos;text-dark&apos;</span> : <span class="hljs-string">&apos;text-secondary&apos;</span>
+    );
+
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App position-absolute text-left d-flex justify-content-center align-items-start pt-5 h-100 w-100&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex flex-wrap mt-5&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{width:</span> <span class="hljs-attr">600</span>}}&gt;</span>
+
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex p-4 border rounded align-items-center w-100&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span> <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;default&quot;</span>
+              <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex&quot;</span>
+              <span class="hljs-attr">enabled</span>=<span class="hljs-string">{enabled}</span>
+              <span class="hljs-attr">onStateChanged</span>=<span class="hljs-string">{this.toggleNotifications}</span>
+            /&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{headingClasses}</span>&gt;</span>Notifications<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+          {/* ...Notification options here... */}
+
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    );
+  }
+
+}
+
+export default App;</span></code></pre>
+<p>Here we initialize the <code class="code--inline">ACTIVITIES</code> constant with an array of activities that can trigger notifications. Next, we initialized the app state with two properties:</p>
+<ul>
+<li><code class="code--inline">enabled</code> - a <code class="code--inline">boolean</code> that indicates whether notifications are enabled.</li>
+<li><code class="code--inline">only</code> - an <code class="code--inline">array</code> that contains all the activities that are enabled to trigger notifications.</li>
+</ul>
+<p>Notice that we used the <code class="code--inline">snakeCase</code> utility from Lodash to convert the activities to snakecase before updating the state. Hence, <code class="code--inline">&apos;News Feeds&apos;</code> becomes <code class="code--inline">&apos;news_feeds&apos;</code>.</p>
+<p>Next, we defined the <code class="code--inline">toggleNotifications()</code> method that updates the app state based on the state it receives from the notification switch. This is used as the callback function passed to the <code class="code--inline">onStateChanged</code> prop of the toggle switch. Notice that when the app is enabled, all activities will be enabled by default, since the <code class="code--inline">only</code> state property is populated with all the activities.</p>
+<p>Finally, we rendered the DOM elements for the app and left a slot for the notification options which will be added soon. At this point, the app should look like the following screenshot:</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/FbHIyQr.gif" alt="Initial App View" class="image__img" title="Initial App View"><figcaption class="image__caption">Initial App View</figcaption></figure><p></p>
+<p>Next go ahead and look for the line that has this comment:</p>
+<pre><code class="language-js">{<span class="hljs-comment">/* ...Notification options here... */</span>}</code></pre>
+<p>and replace it with the following content in order to render the notification options:</p>
+<pre><code class="language-js">{ enabled &amp;&amp; (
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;w-100 mt-5&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;container-fluid px-0&quot;</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;pt-5&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex justify-content-between align-items-center&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-block font-weight-bold text-secondary small&quot;</span>&gt;</span>Email Address<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;text-secondary small mb-1 d-block&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>Provide a valid email address with which to receive notifications.<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;mt-2&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;mail@domain.com&quot;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;form-control&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">fontSize:</span> <span class="hljs-attr">14</span> }} /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;pt-5 mt-4&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex justify-content-between align-items-center border-bottom pb-2&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-block font-weight-bold text-secondary small&quot;</span>&gt;</span>Filter Notifications<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;text-secondary small mb-1 d-block&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">small</span>&gt;</span>Select the account activities for which to receive notifications.<span class="hljs-tag">&lt;/<span class="hljs-name">small</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;mt-5&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;row flex-column align-content-start&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">maxHeight:</span> <span class="hljs-attr">180</span> }}&gt;</span>
+            { this.renderNotifiableActivities() }
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+) }</code></pre>
+<p>Notice here that we made a call to <code class="code--inline">this.renderNotifiableActivities()</code> to render the activities. Let&apos;s go ahead and implement this method and the other remaining methods.</p>
+<p>Add the following methods to the <code class="code--inline">App</code> component.</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/App.js */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  toggleActivityEnabled = <span class="hljs-function"><span class="hljs-params">activity</span> =&gt;</span> ({ enabled }) =&gt; {
+    <span class="hljs-keyword">let</span> { only } = <span class="hljs-keyword">this</span>.state;
+
+    <span class="hljs-keyword">if</span> (enabled &amp;&amp; !only.includes(activity)) {
+      only.push(activity);
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.setState({ only });
+    }
+
+    <span class="hljs-keyword">if</span> (!enabled &amp;&amp; only.includes(activity)) {
+      only = only.filter(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item !== activity);
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.setState({ only });
+    }
+  }
+
+  renderNotifiableActivities() {
+    <span class="hljs-keyword">const</span> { only } = <span class="hljs-keyword">this</span>.state;
+
+    <span class="hljs-keyword">return</span> ACTIVITIES.map(<span class="hljs-function">(<span class="hljs-params">activity, index</span>) =&gt;</span> {
+      <span class="hljs-keyword">const</span> key = snakeCase(activity);
+      <span class="hljs-keyword">const</span> enabled = only.includes(key);
+
+      <span class="hljs-keyword">const</span> activityClasses = classnames(
+        <span class="hljs-string">&apos;small mb-0 pl-3&apos;</span>,
+        enabled ? <span class="hljs-string">&apos;text-dark&apos;</span> : <span class="hljs-string">&apos;text-secondary&apos;</span>
+      );
+
+      <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{index}</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;col-5 d-flex mb-3&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span> <span class="hljs-attr">theme</span>=<span class="hljs-string">&quot;graphite-small&quot;</span>
+            <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;d-flex&quot;</span>
+            <span class="hljs-attr">enabled</span>=<span class="hljs-string">{enabled}</span>
+            <span class="hljs-attr">onStateChanged</span>=<span class="hljs-string">{</span> <span class="hljs-attr">this.toggleActivityEnabled</span>(<span class="hljs-attr">key</span>) }
+          /&gt;</span>
+
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{activityClasses}</span>&gt;</span>{ activity }<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      );
+    })
+  }
+
+}</span></code></pre>
+<p>Here, we have implemented the <code class="code--inline">renderNotifiableActivities</code> method. We iterate through all the activities using <code class="code--inline">ACTIVITIES.map()</code> and render each with a toggle switch for it. Notice that the toggle switch uses the <code class="code--inline">graphite-small</code> theme. We also detect the <code class="code--inline">enabled</code> state of each activity by checking whether it already exists in the <code class="code--inline">only</code> state variable.</p>
+<p>Finally, we defined the <code class="code--inline">toggleActivityEnabled</code> method which was used to provide the callback function for the <code class="code--inline">onStateChanged</code> prop of each activity&apos;s toggle switch. We defined it as a higher-order function so that we can pass the activity as argument and return the callback function. It checks if an activity is already enabled and updates the state accordingly.</p>
+<p>Now the app should look like the following screenshot:</p>
+<p></p><figure class="image image--block image--border"><img src="https://i.imgur.com/KYh2cgE.gif" alt="Final App View" class="image__img" title="Final App View"><figcaption class="image__caption">Final App View</figcaption></figure><p></p>
+<p>If you prefer to have all the activities disabled by default instead of enabled as shown in the initial screenshot, then you could make the following changes to the <code class="code--inline">App</code> component:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* src/App.js */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+
+  <span class="hljs-comment">// Initialize app state, all activities are disabled by default</span>
+  state = { enabled: <span class="hljs-literal">false</span>, only: [] }
+
+  toggleNotifications = ({ enabled }) =&gt; {
+    const { only } = <span class="hljs-keyword">this</span>.state;
+    <span class="hljs-keyword">this</span>.setState({ enabled, only: enabled ? only : [] });
+  }
+
+}</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Accessibility Concerns</span></h2><p>Using toggle switches in our applications instead of traditional checkboxes can enable us create neater interfaces, especially considering the fact that it is difficult to style a traditional checkbox however we want.</p>
+<p>However, using toggle switches instead of checkboxes has some accessibility issues, since the user-agent may not be able to interpret the component&apos;s function correctly.</p>
+<p>A few things can be done to improve the accessibility of the toggle switch and enable user-agents to understand the role correctly. For example, you can use the following ARIA attributes:</p>
+<pre><code class="language-html">&lt;switch-element <span class="hljs-attribute">tabindex</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attribute">role</span>=<span class="hljs-string">&quot;switch&quot;</span> <span class="hljs-attribute">aria-checked</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attribute">aria-labelledby</span>=<span class="hljs-string">&quot;#label-element&quot;</span>&gt;&lt;/switch-element&gt;</code></pre>
+<p>You can also listen to more events on the toggle switch to create more ways the user can interact with the component.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Conclusion</span></h2><p>In this tutorial, we have been able to create a custom toggle switch for our React applications with proper styling that supports different themes. We have also been able to see how we can use it in our application instead of traditional checkboxes and the accessibility concerns involved.</p>
+<p>For the complete sourcecode of this tutorial, checkout the <a href="https://github.com/gladchinda/react-toggle-switch-demo" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">react-toggle-switch-demo</a> repository on Github. You can also get a <a href="https://codesandbox.io/s/7km5n36vzx" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">live demo of this tutorial on Code Sandbox</a>.</p>
+</body></html>

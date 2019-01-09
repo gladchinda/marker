@@ -1,0 +1,218 @@
+<html><head>
+		<meta charset="utf-8">
+		<style type="text/css">@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i");@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700");*{padding:0;margin:0;box-sizing:border-box}body{font-family:'Open Sans', 'Roboto', Avenir, Flutterwave, sans-serif !important;color:#4a4a4a !important;width:720px;margin:0 auto;font-weight:300}html{font-size:10px !important}code{color:rgba(75,0,130,0.6);font-weight:400;font-size:1.25rem;line-height:1.2;font-family:'Fira Mono', 'Roboto Mono', monospace !important}code.code--inline{display:inline-block;background:rgba(75,0,130,0.04);padding:0.3rem 0.5rem;border:1px solid rgba(75,0,130,0.4);border-radius:0.5rem;box-shadow:0 1px 0 -1px rgba(75,0,130,0.85)}.strong>code.code--inline{font-weight:900}pre{display:block;margin:4rem auto;border:1px solid #cecece !important;border-radius:10px;overflow:hidden}pre>code{font-size:1.25rem;line-height:1.75;display:block;padding:2.5rem 4rem;white-space:pre;font-weight:400;color:initial;position:relative;overflow:auto;font-family:'Roboto Mono', monospace !important}.heading>.heading__text{display:none}.heading--h1.heading>.heading__text,.heading--h2.heading>.heading__text,.heading--h3.heading>.heading__text,.heading--h4.heading>.heading__text,.heading--h5.heading>.heading__text,.heading--h6.heading>.heading__text{font-weight:400;display:block;line-height:1.15 !important}.heading--h1.heading{margin:3rem 0}.heading--h1.heading>.heading__text{font-size:4.8rem;font-weight:300}.heading--h2.heading{margin:2.25rem 0}.heading--h2.heading>.heading__text{font-size:3.6rem;font-weight:300}.heading--h3.heading{margin:1.75rem 0}.heading--h3.heading>.heading__text{font-size:2.8rem;font-weight:500}.heading--h4.heading{margin:1.5rem 0}.heading--h4.heading>.heading__text{font-size:2.2rem;font-weight:500}.heading--h5.heading{margin:1.25rem 0}.heading--h5.heading>.heading__text{font-size:1.8rem;font-weight:600}.heading--h6.heading{margin:1rem 0}.heading--h6.heading>.heading__text{font-size:1.4rem;font-weight:900}.line--hr{width:0 !important;height:0 !important;display:none !important}.line--hr.line{width:100% !important;height:1px !important;position:relative;display:block !important;margin:5rem 0 !important}.line--hr.line>hr.line__hr{height:1px;border:none !important;outline:none !important}.line--hr.line::after{content:'';display:block;position:absolute;height:0;width:100%;top:0;border-bottom:1px solid #cecece !important}.image img,.image figcaption{display:none !important}.image>img.image__img{display:inline-block !important;border-radius:5px;border:none !important}.image.image--block{width:100%;display:block !important;margin:5rem auto !important}.image.image--block>img.image__img{display:block !important;margin:auto;position:relative;max-width:100%;height:auto;border-radius:10px}.image.image--block>figcaption.image__caption{display:block !important;margin:2rem auto 0;text-align:center;font-style:italic;font-weight:300;font-size:1.5rem;line-height:1.25;color:#949494;position:relative;width:70%}.image.image--block.image--border>img.image__img{border:1px solid #cecece !important}.image.image--block.image--square>img.image__img{border-radius:0 !important}p,ul,ol{margin:4rem 0;font-size:1.6rem;line-height:1.75;font-weight:400;font-family:'Open Sans', Avenir, sans-serif !important}ul,ol{list-style-position:inside;padding:0 0 0 3rem}a{color:#4a4a4a}li{margin:1rem 0}.heading{margin-top:7.5rem !important}.heading--h1{color:initial !important;margin-top:10rem !important}</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js" integrity="sha256-iq71rXEe/fvjCUP9AfLY0cKudQuKAQywiUpXkRFSkLc=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+		<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+	</head><body><h1 class="heading heading--h1"><span class="heading__text">A Complete Guide to Default Props in React</span></h1><p>React is a very powerful component-based framework for building scalable applications that can be run in different platforms - server, web, mobile, desktop, etc. Millions of applications running on these platforms today are built on top of React. Some of the amazing features of React include: lean framework, virtual DOM, JSX support, code reusablility. You can learn more about React from this documentation.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Hello, React Component</span></h2><p>React apps are usually a composition of several independent components that make up the UI of the application. React components are the building blocks of any React application. A React component is simply a JavaScript function that takes an object of arbitrary inputs known as <code class="code--inline">props</code> and returns React elements describing what should be rendered on the UI.</p>
+<pre><code class="language-js"><span class="hljs-comment">// Simple React Component</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReactHeader</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>React {props.version} Documentation<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}</code></pre>
+<p>This code snippet defines a very simple React component that renders a <code class="code--inline">&lt;h1&gt;</code> element containing a heading for the documentation of a specified React version. It uses the JSX syntax for creating the DOM elements hierarchy of the component in a declarative way. You can learn more about using JSX with React here.</p>
+<p>Without JSX, the previous code snippet will be written like this:</p>
+<pre><code class="language-js"><span class="hljs-comment">// Simple React Component (without JSX)</span>
+<span class="hljs-keyword">function</span> <span class="hljs-constructor">ReactHeader(<span class="hljs-params">props</span>)</span> {
+  return <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">React</span>.</span></span>create<span class="hljs-constructor">Element(&apos;<span class="hljs-params">h1</span>&apos;, <span class="hljs-params">null</span>, `React ${<span class="hljs-params">props</span>.<span class="hljs-params">version</span>} Documentation`)</span>;
+}</code></pre>
+<p>JSX is not required for you to use React. If you intend to use React without any form of compilation, then JSX is not the way to go. In fact, every JSX in your React component is converted to its <code class="code--inline">createElement</code> equivalent before it is rendered. However, in this guide, JSX will be used in all code snippets where possible.</p>
+<p>From the previous code snippets, it is pretty clear that the <code class="code--inline">ReactHeader</code> component requires that a <code class="code--inline">version</code> prop be passed to it. The <code class="code--inline">ReactHeader</code> component can be rendered on the DOM (inside an arbitrary <code class="code--inline">&lt;div id=&quot;root&quot;&gt;</code> element) as follows:</p>
+<pre><code class="language-js"><span class="hljs-comment">// Render a React Component</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ReactDOM</span>.</span></span>render(&lt;ReactHeader version={<span class="hljs-number">16</span>} /&gt;, document.get<span class="hljs-constructor">ElementById(&apos;<span class="hljs-params">root</span>&apos;)</span>);</code></pre>
+<p>Notice here that the <code class="code--inline">ReactHeader</code> has been rendered with a <code class="code--inline">version</code> prop set to <code class="code--inline">16</code>. At the moment, everything seems to be working properly in the <code class="code--inline">ReactHeader</code> component as shown in the following screenshot.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Default Props</span></h2><p><strong class="strong">What happens when the <code class="code--inline">version</code> prop is not passed?</strong></p>
+<p>Here is what happens when the <code class="code--inline">ReactHeader</code> component is rendered without the <code class="code--inline">version</code> prop.</p>
+<pre><code class="language-js"><span class="hljs-comment">// Render the ReactHeader Component</span>
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ReactDOM</span>.</span></span>render(&lt;ReactHeader /&gt;, document.get<span class="hljs-constructor">ElementById(&apos;<span class="hljs-params">root</span>&apos;)</span>);</code></pre>
+<p>You probably might have guessed right. Since the <code class="code--inline">version</code> prop is not passed, the reference to <code class="code--inline">props.version</code> in the component is <code class="code--inline">undefined</code>, hence the above screenshot.</p>
+<p>One way you could handle this is by applying <strong class="strong">conditional rendering</strong>. You can prevent the component from rendering whenever a required prop is not passed or is invalid and render noting instead, as shown in the following snippet:</p>
+<pre><code class="language-js"><span class="hljs-comment">// Simple React Component</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReactHeader</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="hljs-built_in">Number</span>.isFinite(props.version)
+      ? <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>React {props.version} Documentation<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+      : <span class="hljs-literal">null</span>
+  );
+}</code></pre>
+<p>Another way you could fix this is by setting <strong class="strong">default props</strong> for the component. You can tweak the component a bit to use a <strong class="strong">default value</strong> for the <code class="code--inline">version</code> prop whenever it is not passed. Here it is:</p>
+<pre><code class="language-js"><span class="hljs-comment">// With JSX</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReactHeader</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>React {props.version || 16} Documentation<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
+
+<span class="hljs-comment">// OR</span>
+<span class="hljs-comment">// Without JSX</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ReactHeader</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">return</span> React.createElement(<span class="hljs-string">&apos;h1&apos;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">`React <span class="hljs-subst">${props.version || <span class="hljs-number">16</span>}</span> Documentation`</span>);
+}</code></pre>
+<p>Here, the logical <code class="code--inline">OR</code> (<code class="code--inline">||</code>) operator is used to set a fallback value for the <code class="code--inline">version</code> prop whenever it is not passed. A default value of <code class="code--inline">16</code> has been set for the <code class="code--inline">version</code> prop. This guide explores different methods of setting default props for React components.</p>
+<p>In this guide, you will be exposed to different ways of setting default props for different flavours of React components:</p>
+<ol>
+<li>Using <code class="code--inline">React.createClass()</code> API</li>
+<li>Class Components</li>
+<li>Functional Components</li>
+<li>Using Higher-Order Components</li>
+</ol>
+<h2 class="heading heading--h2"><span class="heading__text">React.createClass()</span></h2><p>In React, class components are suited for use cases where you need to maintain state internally within the component or when you want to leverage on the component&apos;s lifecycle methods.</p>
+<p>When React was released initially, classes have not become a thing in JavaScript. Hence, there was actually no way of creating classes in JavaScript. However, React provided with the <code class="code--inline">React.createClass()</code> API for creating class-like components. Over time, this API was deprecated and finally removed from React in favor of ES6 classes.</p>
+<p>If you are using a React version prior to <code class="code--inline">15.5.0</code>, then you can use the <code class="code--inline">React.createClass()</code> API to create a React component as follows:</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+
+<span class="hljs-comment">/**
+ * ThemedButton Component
+ * Using React.createClass()
+ *
+ * Renders a Bootstrap themed button element.
+ */</span>
+
+<span class="hljs-keyword">const</span> ThemedButton = React.createClass({
+
+  <span class="hljs-comment">// Component display name</span>
+  displayName: <span class="hljs-string">&apos;ThemedButton&apos;</span>,
+
+  <span class="hljs-comment">// render() method</span>
+  render() {
+    <span class="hljs-keyword">const</span> { theme, label, ...props } = <span class="hljs-keyword">this</span>.props;
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">btn</span> <span class="hljs-attr">btn-</span>${<span class="hljs-attr">theme</span>}`} {<span class="hljs-attr">...props</span>}&gt;</span>{ label }<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+  }
+
+});</code></pre>
+<p>This code snippet creates a very simplistic <code class="code--inline">ThemedButton</code> component using the <code class="code--inline">React.createClass()</code> API. This component simply renders a Bootstrap themed button based on the <code class="code--inline">props</code> passed to it. Also notice that it requires a <code class="code--inline">theme</code> prop and a <code class="code--inline">label</code> prop to properly render the button.</p>
+<p>A set of themed buttons can be rendered on a React app as follows:</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
+
+<span class="hljs-keyword">function</span> App(props) {
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;ThemedButton theme=<span class="hljs-string">&quot;danger&quot;</span> label=<span class="hljs-string">&quot;Delete Item&quot;</span> /&gt;
+      &lt;ThemedButton theme=<span class="hljs-string">&quot;primary&quot;</span> label=<span class="hljs-string">&quot;Create Item&quot;</span> /&gt;
+      &lt;ThemedButton theme=<span class="hljs-string">&quot;success&quot;</span> label=<span class="hljs-string">&quot;Update Item&quot;</span> /&gt;
+      &lt;ThemedButton theme=<span class="hljs-string">&quot;warning&quot;</span> label=<span class="hljs-string">&quot;Add to Cart&quot;</span> /&gt;
+      &lt;ThemedButton /&gt;
+    &lt;/div&gt;
+  );
+}
+
+<span class="hljs-keyword">const</span> rootElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;root&apos;</span>);
+ReactDOM.render(&lt;App /&gt;, rootElement);</code></pre>
+<p>Notice here that the <code class="code--inline">ThemedButton</code> component has been rendered five times in the app. At the fifth time, the <code class="code--inline">ThemedButton</code> isn&apos;t passed any props. Here is a screenshot of what the app looks like:</p>
+<p>From the above screenshot, you will notice that the fifth button isn&apos;t visually represented on the view, since it is rendered without <code class="code--inline">theme</code> and <code class="code--inline">label</code> props. Hence, there is need to set default props for the <code class="code--inline">ThemedButton</code> component.</p>
+<p>For components created using the <code class="code--inline">React.createClass()</code> API, you can set default props by adding a method named <code class="code--inline">getDefaultProps</code> to the object literal.</p>
+<p>The <code class="code--inline">getDefaultProps()</code> method should return an object representing the default props set for the component. Here it is:</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> ThemedButton = React.createClass({
+
+  <span class="hljs-comment">// Component display name</span>
+  displayName: <span class="hljs-string">&apos;ThemedButton&apos;</span>,
+
+  <span class="hljs-comment">// render() method</span>
+  render() {
+    <span class="hljs-keyword">const</span> { theme, label, ...props } = <span class="hljs-keyword">this</span>.props;
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">btn</span> <span class="hljs-attr">btn-</span>${<span class="hljs-attr">theme</span>}`} {<span class="hljs-attr">...props</span>}&gt;</span>{ label }<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+  },
+
+  <span class="hljs-comment">// Set default props</span>
+  getDefaultProps() {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">theme</span>: <span class="hljs-string">&quot;secondary&quot;</span>,
+      <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;Button Text&quot;</span>
+    };
+  }
+
+})</code></pre>
+<p>In this snippet, default props have been set for the <code class="code--inline">ThemedButton</code> component. The <code class="code--inline">theme</code> prop defaults to <code class="code--inline">&quot;secondary&quot;</code> if not passed, while the <code class="code--inline">label</code> prop defaults to <code class="code--inline">&quot;Button Text&quot;</code>.</p>
+<p>With the default props set, the app should now look like the following screenshot:</p>
+<h2 class="heading heading--h2"><span class="heading__text">Class Components</span></h2><p>With more recent versions of React, class components can be created by leveraging on the ES6 class syntax. This is what the <code class="code--inline">ThemedButton</code> component will look like using the ES6 class syntax.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-type">React</span>, { <span class="hljs-type">Component</span> } from <span class="hljs-symbol">&apos;reac</span>t&apos;;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThemedButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  render() {
+    const { theme, label, ...props } = <span class="hljs-keyword">this</span>.props;
+    <span class="hljs-keyword">return</span> &lt;button className={`btn btn-${theme}`} {...props}&gt;{ label }&lt;/button&gt;
+  }
+}</code></pre>
+<p>For a React component created using the ES6 class syntax, you can set default props by adding a <code class="code--inline">static</code> property named <code class="code--inline">defaultProps</code> to the component class.</p>
+<p>The <code class="code--inline">defaultProps</code> static property should be set to an object representing the default props for the component. This can be done by defining <code class="code--inline">defaultProps</code> on the component class itself, outside of the class body, as shown in the following code snippet:</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThemedButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-comment">// ...implement render method</span>
+  }
+}
+
+<span class="hljs-comment">// Set default props</span>
+<span class="hljs-type">ThemedButton</span>.defaultProps = {
+  theme: <span class="hljs-string">&quot;secondary&quot;</span>,
+  label: <span class="hljs-string">&quot;Button Text&quot;</span>
+};</code></pre>
+<p>With the addition of <code class="code--inline">static</code> class properties and methods to the ECMAScript specification, you can alternatively specify the <code class="code--inline">defaultProps</code> as shown in the following snippet:</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThemedButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  render() {
+    <span class="hljs-comment">// ...implement render method</span>
+  }
+
+  <span class="hljs-comment">// Set default props</span>
+  static defaultProps = {
+    theme: <span class="hljs-string">&quot;secondary&quot;</span>,
+    label: <span class="hljs-string">&quot;Button Text&quot;</span>
+  }
+}</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Functional Components</span></h2><p>In React, the function syntax is appropriate for components that simply render elements without keeping track of their state or lifecycle. These components are usually called <em class="em">functional components</em> or <em class="em">stateless functional components</em>. Here is what the <code class="code--inline">ThemedButton</code> component will look like when re-written as a stateless functional component:</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ThemedButton</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { theme, label, ...restProps } = props;
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">btn</span> <span class="hljs-attr">btn-</span>${<span class="hljs-attr">theme</span>}`} {<span class="hljs-attr">...restProps</span>}&gt;</span>{ label }<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+}</code></pre>
+<p>As with class components, you can set default props on a functional component by adding a static property named <code class="code--inline">defaultProps</code> to the component function itself.</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-constructor">ThemedButton(<span class="hljs-params">props</span>)</span> {
+  <span class="hljs-comment">// ...render component</span>
+}
+
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">ThemedButton</span>.</span></span>defaultProps = {
+  theme: <span class="hljs-string">&quot;secondary&quot;</span>,
+  label: <span class="hljs-string">&quot;Button Text&quot;</span>
+};</code></pre>
+<p>Alternatively, with the ES6 object destructuring syntax, you can destructure the <code class="code--inline">props</code> of a functional component with default values.</p>
+<p>Here is what the <code class="code--inline">ThemedButton</code> component will look like with destructured props:</p>
+<pre><code class="language-js"><span class="hljs-meta"><span class="hljs-meta-keyword">import</span> React from &apos;react&apos;;</span>
+
+<span class="hljs-comment">// METHOD 1:</span>
+<span class="hljs-comment">// Default Props with destructuring</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ThemedButton</span><span class="hljs-params">(props)</span> </span>{
+  <span class="hljs-keyword">const</span> { theme = <span class="hljs-string">&apos;secondary&apos;</span>, label = <span class="hljs-string">&apos;Button Text&apos;</span>, ...restProps } = props;
+  <span class="hljs-keyword">return</span> &lt;button className={`btn btn-${theme}`} {...restProps}&gt;{ label }&lt;/button&gt;
+}
+
+<span class="hljs-comment">// METHOD 2:</span>
+<span class="hljs-comment">// More compact destructured props</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ThemedButton</span><span class="hljs-params">({ theme = <span class="hljs-string">&apos;secondary&apos;</span>, label = <span class="hljs-string">&apos;Button Text&apos;</span>, <span class="hljs-rest_arg">...restProps</span> })</span> </span>{
+  <span class="hljs-keyword">return</span> &lt;button className={`btn btn-${theme}`} {...restProps}&gt;{ label }&lt;/button&gt;
+}</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Using Higher-Order Components</span></h2><p>In React, a <strong class="strong">higher-order component (HOC)</strong> is basically a function that takes a React component as its argument and returns another React component, usually an enhancement of the original.</p>
+<p>Higher-order components are very useful for component composition and there are a lot of packages that provide higher-order components that can be used with React components - a very popular one being <strong class="strong">recompose</strong>.</p>
+<p>Recompose is a rich set of higher-order components that can be used with React components. It is more like Lodash for React. You can learn more about the higher-order components and API provided by recompose in <a href="https://github.com/acdlite/recompose/blob/master/docs/API.md" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">this reference</a>.</p>
+<p>You can run the following command to install <code class="code--inline">recompose</code> as a dependency for your project:</p>
+<pre><code class="language-sh">npm <span class="hljs-keyword">install</span> recompose <span class="hljs-comment">--save</span></code></pre>
+<p>Recompose exports a <code class="code--inline">defaultProps</code> function that returns a higher-order component which sets the specified default props on any React component passed to it and returns the modified React component.</p>
+<p>Here is how the <code class="code--inline">ThemedButton</code> component can be re-written using the <code class="code--inline">defaultProps</code> higher-order component from Recompose.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> { defaultProps } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;recompose&apos;</span>;
+
+<span class="hljs-comment">// React Component</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ThemedButton</span>(<span class="hljs-params">props</span>) </span>{
+  <span class="hljs-keyword">const</span> { theme, label, ...restProps } = props;
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">btn</span> <span class="hljs-attr">btn-</span>${<span class="hljs-attr">theme</span>}`} {<span class="hljs-attr">...restProps</span>}&gt;</span>{ label }<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+}
+
+<span class="hljs-comment">// Default Props HOC</span>
+<span class="hljs-keyword">const</span> withDefaultProps = defaultProps({
+  <span class="hljs-attr">theme</span>: <span class="hljs-string">&quot;secondary&quot;</span>,
+  <span class="hljs-attr">label</span>: <span class="hljs-string">&quot;Button Text&quot;</span>
+});
+
+<span class="hljs-comment">// Enhanced Component with default props</span>
+ThemedButton = withDefaultProps(ThemedButton);</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Conclusion</span></h2><p>Using default props can bring about great improvements to your React components. In this guide, you have been exposed to several ways in which you can set default props for different flavors of React components you might have in your React application.</p>
+</body></html>

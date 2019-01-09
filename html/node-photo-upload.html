@@ -1,0 +1,598 @@
+<html><head>
+		<meta charset="utf-8">
+		<style type="text/css">@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i");@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i");@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700");*{padding:0;margin:0;box-sizing:border-box}body{font-family:'Open Sans', 'Roboto', Avenir, Flutterwave, sans-serif !important;color:#4a4a4a !important;width:720px;margin:0 auto;font-weight:300}html{font-size:10px !important}code{color:rgba(75,0,130,0.6);font-weight:400;font-size:1.25rem;line-height:1.2;font-family:'Fira Mono', 'Roboto Mono', monospace !important}code.code--inline{display:inline-block;background:rgba(75,0,130,0.04);padding:0.3rem 0.5rem;border:1px solid rgba(75,0,130,0.4);border-radius:0.5rem;box-shadow:0 1px 0 -1px rgba(75,0,130,0.85)}.strong>code.code--inline{font-weight:900}pre{display:block;margin:4rem auto;border:1px solid #cecece !important;border-radius:10px;overflow:hidden}pre>code{font-size:1.25rem;line-height:1.75;display:block;padding:2.5rem 4rem;white-space:pre;font-weight:400;color:initial;position:relative;overflow:auto;font-family:'Roboto Mono', monospace !important}.heading>.heading__text{display:none}.heading--h1.heading>.heading__text,.heading--h2.heading>.heading__text,.heading--h3.heading>.heading__text,.heading--h4.heading>.heading__text,.heading--h5.heading>.heading__text,.heading--h6.heading>.heading__text{font-weight:400;display:block;line-height:1.15 !important}.heading--h1.heading{margin:3rem 0}.heading--h1.heading>.heading__text{font-size:4.8rem;font-weight:300}.heading--h2.heading{margin:2.25rem 0}.heading--h2.heading>.heading__text{font-size:3.6rem;font-weight:300}.heading--h3.heading{margin:1.75rem 0}.heading--h3.heading>.heading__text{font-size:2.8rem;font-weight:500}.heading--h4.heading{margin:1.5rem 0}.heading--h4.heading>.heading__text{font-size:2.2rem;font-weight:500}.heading--h5.heading{margin:1.25rem 0}.heading--h5.heading>.heading__text{font-size:1.8rem;font-weight:600}.heading--h6.heading{margin:1rem 0}.heading--h6.heading>.heading__text{font-size:1.4rem;font-weight:900}.line--hr{width:0 !important;height:0 !important;display:none !important}.line--hr.line{width:100% !important;height:1px !important;position:relative;display:block !important;margin:5rem 0 !important}.line--hr.line>hr.line__hr{height:1px;border:none !important;outline:none !important}.line--hr.line::after{content:'';display:block;position:absolute;height:0;width:100%;top:0;border-bottom:1px solid #cecece !important}.image img,.image figcaption{display:none !important}.image>img.image__img{display:inline-block !important;border-radius:5px;border:none !important}.image.image--block{width:100%;display:block !important;margin:5rem auto !important}.image.image--block>img.image__img{display:block !important;margin:auto;position:relative;max-width:100%;height:auto;border-radius:10px}.image.image--block>figcaption.image__caption{display:block !important;margin:2rem auto 0;text-align:center;font-style:italic;font-weight:300;font-size:1.5rem;line-height:1.25;color:#949494;position:relative;width:70%}.image.image--block.image--border>img.image__img{border:1px solid #cecece !important}.image.image--block.image--square>img.image__img{border-radius:0 !important}p,ul,ol{margin:4rem 0;font-size:1.6rem;line-height:1.75;font-weight:400;font-family:'Open Sans', Avenir, sans-serif !important}ul,ol{list-style-position:inside;padding:0 0 0 3rem}a{color:#4a4a4a}li{margin:1rem 0}.heading{margin-top:7.5rem !important}.heading--h1{color:initial !important;margin-top:10rem !important}</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js" integrity="sha256-iq71rXEe/fvjCUP9AfLY0cKudQuKAQywiUpXkRFSkLc=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+		<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+	</head><body><h1 class="heading heading--h1"><span class="heading__text">Advanced Photo Upload with Multer and Jimp</span></h1><p>At one time or the other when building our Node application we have been faced with uploading a photo (usually from a form) to be used as a profile photo for a user in our app. In addition, we usually have to uniquely store the photo maybe in the local filesystem (during development) or even in the cloud (AWS, Cloudinary) for easy access. Since this is a very common task, there are lots of tools available which we can leverage on to handle the individual parts of the process.</p>
+<p>In this tutorial, we will see how to upload a photo and manipulate it (resize, crop, greyscale, etc) before writing it to storage. We will limit ourselves to storing files in the local filesystem for simplicity. We will be using the following packages to build our application.</p>
+<ul>
+<li><strong class="strong">express</strong> - A very popular Node server.</li>
+<li><strong class="strong">lodash</strong> - A very popular JavaScript library with lots of utility functions for working with arrays, strings, objects and functional programming. It is an improvement on the <a href="http://underscorejs.org/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Underscore.js</a> library.</li>
+<li><strong class="strong">multer</strong> - A package for extracting files from <code class="code--inline">multipart/form-data</code> requests.</li>
+<li><strong class="strong">jimp</strong> - An image manipulation package.</li>
+<li><strong class="strong">dotenv</strong> - A package for adding <code class="code--inline">.env</code> variables to <code class="code--inline">process.env</code>.</li>
+<li><strong class="strong">mkdirp</strong> - A package for creating nested directory structure.</li>
+<li><strong class="strong">concat-stream</strong> - A package for creating a writable stream that concatenates all the data from a stream and calls a callback with the result.</li>
+<li><strong class="strong">streamifier</strong> - A package to convert a Buffer/String into a readable stream.</li>
+</ul>
+<blockquote>
+<p><strong class="strong">What we aim to achieve</strong>
+We want to take over the uploaded file stream from <strong class="strong">Multer</strong> and then manipulate the stream buffer (<em class="em">image</em>) however we wish to using <strong class="strong">Jimp</strong>, before writing the image to storage (<em class="em">local filesystem</em>). This will require us to create a custom storage engine to use with Multer - which we will be doing in this tutorial.</p>
+</blockquote>
+<p>Here is the end result of what we will be building in this tutorial.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Getting Started</span></h2><p>We will begin by creating a new Express app using the Express generator. If you don&apos;t have the Express generator already you will need to install it first by running the following command on your command line terminal:</p>
+<pre><code class="language-sh">npm <span class="hljs-keyword">install</span> express-generator -g</code></pre>
+<p>Once you have the Express generator, you can now run the following command to create a new Express app (<code class="code--inline">photo-uploader-app</code> in my case) and installing the dependencies for Express. We will be using <code class="code--inline">ejs</code> as our view engine.</p>
+<pre><code class="language-sh">express --<span class="hljs-keyword">view</span>=ejs photo-uploader-<span class="hljs-keyword">app</span>
+<span class="hljs-keyword">cd</span> photo-uploader-<span class="hljs-keyword">app</span>
+npm install</code></pre>
+<p>Next, we will go ahead and install the remaining dependencies we need for our project.</p>
+<pre><code class="language-sh"><span class="hljs-symbol">npm</span> install --save lodash <span class="hljs-keyword">multer </span>jimp dotenv concat-<span class="hljs-keyword">stream </span><span class="hljs-keyword">streamifier </span>mkdirp</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Basic Configuration</span></h2><p>Before we continue, our app will need some form configuration. We will create a <code class="code--inline">.env</code> file on our project root directory and add some environment variables. The <code class="code--inline">.env</code> file should look like the following snippet.</p>
+<pre><code class="language-ini"><span class="hljs-comment"># Avatar Upload Variables</span>
+
+<span class="hljs-attr">AVATAR_FIELD</span>=avatar
+<span class="hljs-attr">AVATAR_BASE_URL</span>=/uploads/avatars
+<span class="hljs-attr">AVATAR_STORAGE</span>=uploads/avatars</code></pre>
+<p>Next, we will load our environment variables into <code class="code--inline">process.env</code> using <strong class="strong">dotenv</strong> so that we can access them in our app. To do this, we will add the following line to the <code class="code--inline">app.js</code> file. Ensure you add this line at the point where you are loading the dependencies. It must come before all route imports and before creating the Express app instance.</p>
+<pre><code class="language-js"><span class="hljs-comment">/* app.js */</span>
+
+<span class="hljs-keyword">var</span> dotenv = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;dotenv&apos;</span>).config();</code></pre>
+<p>Now we can access our environment variables using <code class="code--inline">process.env</code>. For example: <code class="code--inline">process.env.AVATAR_STORAGE</code> should contain the value <code class="code--inline">uploads/avatars</code>. We will go ahead to edit our index route file <code class="code--inline">routes/index.js</code> to add some local variables we will be needing in our view. We will add two local variables:</p>
+<ul>
+<li><strong class="strong">title</strong> - The title of our index page: <code class="code--inline">Upload Avatar</code></li>
+<li><strong class="strong">avatar_field</strong> - The name of the input field for our avatar photo. We will be getting this from <code class="code--inline">process.env.AVATAR_FIELD</code></li>
+</ul>
+<p>Modify the <code class="code--inline">GET /</code> route as follows:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* routes/index.js */</span>
+
+<span class="hljs-selector-tag">router</span><span class="hljs-selector-class">.get</span>(<span class="hljs-string">&apos;/&apos;</span>, function(req, res, next) {
+    <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.render</span>(<span class="hljs-string">&apos;index&apos;</span>, {
+        <span class="hljs-attribute">title</span>: <span class="hljs-string">&apos;Upload Avatar&apos;</span>,
+        <span class="hljs-attribute">avatar_field</span>: process.env.AVATAR_FIELD
+    });
+});</code></pre>
+<h2 class="heading heading--h2"><span class="heading__text">Preparing the View</span></h2><p>Let&apos;s begin by creating the basic markup for our photo upload form by modifying the <code class="code--inline">views/index.ejs</code> file. For the sake of simplicity we will add the styles directly on our view just to give it a slightly nice look. See the following code for the markup of our page.</p>
+<pre><code class="language-ejs"><span class="hljs-comment">&lt;!-- views/index.ejs --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;no-js&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">%=</span> <span class="hljs-attr">title</span> %&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span><span class="css">
+        * {
+            <span class="hljs-attribute">font</span>: <span class="hljs-number">600</span> <span class="hljs-number">16px</span> system-ui, sans-serif;
+        }
+        <span class="hljs-selector-tag">form</span> {
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">320px</span>;
+            <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span> auto;
+            <span class="hljs-attribute">text-align</span>: center;
+        }
+        <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">legend</span> {
+            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">36px</span>;
+            <span class="hljs-attribute">color</span>: <span class="hljs-number">#3c5b6d</span>;
+            <span class="hljs-attribute">padding</span>: <span class="hljs-number">150px</span> <span class="hljs-number">0</span> <span class="hljs-number">20px</span>;
+        }
+        <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=file]</span>, <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=file]</span><span class="hljs-selector-pseudo">:before</span> {
+            <span class="hljs-attribute">display</span>: block;
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">240px</span>;
+            <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;
+            <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
+            <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50px</span>;
+            <span class="hljs-attribute">text-align</span>: center;
+            <span class="hljs-attribute">cursor</span>: pointer;
+        }
+        <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=file]</span> {
+            <span class="hljs-attribute">position</span>: relative;
+        }
+        <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[type=file]</span><span class="hljs-selector-pseudo">:before</span> {
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;Choose a Photo&apos;</span>;
+            <span class="hljs-attribute">position</span>: absolute;
+            <span class="hljs-attribute">top</span>: -<span class="hljs-number">2px</span>;
+            <span class="hljs-attribute">left</span>: -<span class="hljs-number">2px</span>;
+            <span class="hljs-attribute">color</span>: <span class="hljs-number">#3c5b6d</span>;
+            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+            <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
+            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+            <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#3c5b6d</span>;
+        }
+        <span class="hljs-selector-tag">form</span> &gt; <span class="hljs-selector-tag">button</span><span class="hljs-selector-attr">[type=submit]</span> {
+            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+            <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+            <span class="hljs-attribute">display</span>: block;
+            <span class="hljs-attribute">border</span>: none;
+            <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+            <span class="hljs-attribute">cursor</span>: pointer;
+            <span class="hljs-attribute">background</span>: <span class="hljs-number">#2a76cd</span>;
+            <span class="hljs-attribute">width</span>: <span class="hljs-number">240px</span>;
+            <span class="hljs-attribute">margin</span>: <span class="hljs-number">20px</span> auto;
+            <span class="hljs-attribute">padding</span>: <span class="hljs-number">15px</span> <span class="hljs-number">20px</span>;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/upload&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;POST&quot;</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">&quot;multipart/form-data&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">legend</span>&gt;</span>Upload Avatar<span class="hljs-tag">&lt;/<span class="hljs-name">legend</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;&lt;%= avatar_field %&gt;&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary&quot;</span>&gt;</span>Upload<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Notice how we have used our local variables on our view to set the title and the name of the avatar input field. You will notice that we are using <code class="code--inline">enctype=&quot;multipart/form-data&quot;</code> on our form since we will be uploading a file. You will also see that we have set the form to make a <code class="code--inline">POST</code> request to the <code class="code--inline">/upload</code> route (we will implement later) on submission.</p>
+<p>Now let&apos;s start the app for the first time using <code class="code--inline">npm start</code>.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">npm</span> start</code></pre>
+<p>If you have been following correctly everything should run without errors. Just go ahead and visit <code class="code--inline">localhost:3000</code> on your browser. The page should look like the following screenshot:</p>
+<p></p><figure class="image image--block image--square"><img src="https://image.prntscr.com/image/s7AaQE8aQgmPElni-1uZJA.jpg" alt="Upload Page" class="image__img" title="Upload Page"><figcaption class="image__caption">Upload Page</figcaption></figure><p></p>
+<h2 class="heading heading--h2"><span class="heading__text">Creating the Multer Storage Engine</span></h2><p>So far, trying to upload a photo through our form will result in an error because we&apos;ve not created the handler for the upload request. We are going to implement the <code class="code--inline">/upload</code> route to actually handle the upload and we will be using the Multer package for that. If you are not already familiar with the Multer package you can check the <a href="https://github.com/expressjs/multer" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Multer package on Github</a>. You can also read this <a href="https://scotch.io/tutorials/express-file-uploads-with-multer" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">article</a> for a quick start.</p>
+<p>We will have to create a custom storage engine to use with Multer. Let&apos;s create a new folder in our project root named <code class="code--inline">helpers</code> and create a new file <code class="code--inline">AvatarStorage.js</code> inside it for our custom storage engine. The file should contain the following blueprint code snippet:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* helpers/AvatarStorage.js */</span>
+
+<span class="hljs-comment">// Load dependencies</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lodash&apos;</span>);
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;fs&apos;</span>);
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">var</span> Jimp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;jimp&apos;</span>);
+<span class="hljs-keyword">var</span> crypto = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;crypto&apos;</span>);
+<span class="hljs-keyword">var</span> mkdirp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;mkdirp&apos;</span>);
+<span class="hljs-keyword">var</span> concat = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;concat-stream&apos;</span>);
+<span class="hljs-keyword">var</span> streamifier = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;streamifier&apos;</span>);
+
+<span class="hljs-comment">// Configure UPLOAD_PATH</span>
+<span class="hljs-comment">// process.env.AVATAR_STORAGE contains uploads/avatars</span>
+<span class="hljs-keyword">var</span> UPLOAD_PATH = path.resolve(__dirname, <span class="hljs-string">&apos;..&apos;</span>, process.env.AVATAR_STORAGE);
+
+<span class="hljs-comment">// create a multer storage engine</span>
+<span class="hljs-keyword">var</span> AvatarStorage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">options</span>) </span>{
+
+    <span class="hljs-comment">// this serves as a constructor</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AvatarStorage</span>(<span class="hljs-params">opts</span>) </span>{}
+
+    <span class="hljs-comment">// this generates a random cryptographic filename</span>
+    AvatarStorage.prototype._generateRandomFilename = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}
+
+    <span class="hljs-comment">// this creates a Writable stream for a filepath</span>
+    AvatarStorage.prototype._createOutputStream = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">filepath, cb</span>) </span>{}
+
+    <span class="hljs-comment">// this processes the Jimp image buffer</span>
+    AvatarStorage.prototype._processImage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">image, cb</span>) </span>{}
+
+    <span class="hljs-comment">// multer requires this for handling the uploaded file</span>
+    AvatarStorage.prototype._handleFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, file, cb</span>) </span>{}
+
+    <span class="hljs-comment">// multer requires this for destroying file</span>
+    AvatarStorage.prototype._removeFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, file, cb</span>) </span>{}
+
+    <span class="hljs-comment">// create a new instance with the passed options and return it</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AvatarStorage(options);
+
+};
+
+<span class="hljs-comment">// export the storage engine</span>
+<span class="hljs-built_in">module</span>.exports = AvatarStorage;
+</code></pre>
+<p>Let&apos;s begin to add the implementations for the listed functions in our storage engine. We will begin with the constructor function.</p>
+<pre><code class="language-js">
+// this serves <span class="hljs-keyword">as</span> a constructor
+<span class="hljs-keyword">function</span> AvatarStorage(opts) {
+
+    var baseUrl = process.env.AVATAR_BASE_URL;
+
+    var allowedStorageSystems = [<span class="hljs-string">&apos;local&apos;</span>];
+    var allowedOutputFormats = [<span class="hljs-string">&apos;jpg&apos;</span>, <span class="hljs-string">&apos;png&apos;</span>];
+
+    // fallback <span class="hljs-keyword">for</span> the <span class="hljs-keyword">options</span>
+    var defaultOptions = {
+        <span class="hljs-keyword">storage</span>: <span class="hljs-string">&apos;local&apos;</span>,
+        output: <span class="hljs-string">&apos;png&apos;</span>,
+        greyscale: <span class="hljs-keyword">false</span>,
+        quality: <span class="hljs-number">70</span>,
+        square: <span class="hljs-keyword">true</span>,
+        threshold: <span class="hljs-number">500</span>,
+        responsive: <span class="hljs-keyword">false</span>,
+    };
+
+    // extend <span class="hljs-keyword">default</span> <span class="hljs-keyword">options</span> <span class="hljs-keyword">with</span> passed <span class="hljs-keyword">options</span>
+    var <span class="hljs-keyword">options</span> = (opts &amp;&amp; _.isObject(opts)) ? _.pick(opts, _.keys(defaultOptions)) : {};
+    <span class="hljs-keyword">options</span> = _.extend(defaultOptions, <span class="hljs-keyword">options</span>);
+
+    // <span class="hljs-keyword">check</span> the <span class="hljs-keyword">options</span> <span class="hljs-keyword">for</span> correct <span class="hljs-keyword">values</span> <span class="hljs-keyword">and</span> use fallback <span class="hljs-keyword">value</span> <span class="hljs-keyword">where</span> necessary
+    this.<span class="hljs-keyword">options</span> = _.forIn(<span class="hljs-keyword">options</span>, <span class="hljs-keyword">function</span>(<span class="hljs-keyword">value</span>, key, <span class="hljs-keyword">object</span>) {
+
+        switch (key) {
+
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;square&apos;</span>:
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;greyscale&apos;</span>:
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;responsive&apos;</span>:
+                <span class="hljs-keyword">object</span>[key] = _.isBoolean(<span class="hljs-keyword">value</span>) ? <span class="hljs-keyword">value</span> : defaultOptions[key];
+                break;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;storage&apos;</span>:
+                <span class="hljs-keyword">value</span> = String(<span class="hljs-keyword">value</span>).toLowerCase();
+                <span class="hljs-keyword">object</span>[key] = _.includes(allowedStorageSystems, <span class="hljs-keyword">value</span>) ? <span class="hljs-keyword">value</span> : defaultOptions[key];
+                break;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;output&apos;</span>:
+                <span class="hljs-keyword">value</span> = String(<span class="hljs-keyword">value</span>).toLowerCase();
+                <span class="hljs-keyword">object</span>[key] = _.includes(allowedOutputFormats, <span class="hljs-keyword">value</span>) ? <span class="hljs-keyword">value</span> : defaultOptions[key];
+                break;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;quality&apos;</span>:
+                <span class="hljs-keyword">value</span> = _.isFinite(<span class="hljs-keyword">value</span>) ? <span class="hljs-keyword">value</span> : Number(<span class="hljs-keyword">value</span>);
+                <span class="hljs-keyword">object</span>[key] = (<span class="hljs-keyword">value</span> &amp;&amp; <span class="hljs-keyword">value</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">value</span> &lt;= <span class="hljs-number">100</span>) ? <span class="hljs-keyword">value</span> : defaultOptions[key];
+                break;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;threshold&apos;</span>:
+                <span class="hljs-keyword">value</span> = _.isFinite(<span class="hljs-keyword">value</span>) ? <span class="hljs-keyword">value</span> : Number(<span class="hljs-keyword">value</span>);
+                <span class="hljs-keyword">object</span>[key] = (<span class="hljs-keyword">value</span> &amp;&amp; <span class="hljs-keyword">value</span> &gt;= <span class="hljs-number">0</span>) ? <span class="hljs-keyword">value</span> : defaultOptions[key];
+                break;
+
+        }
+
+    });
+
+    // <span class="hljs-keyword">set</span> the upload <span class="hljs-type">path</span>
+    this.uploadPath = this.<span class="hljs-keyword">options</span>.responsive ? <span class="hljs-type">path</span>.<span class="hljs-keyword">join</span>(UPLOAD_PATH, <span class="hljs-string">&apos;responsive&apos;</span>) : UPLOAD_PATH;
+
+    // <span class="hljs-keyword">set</span> the upload base url
+    this.uploadBaseUrl = this.<span class="hljs-keyword">options</span>.responsive ? <span class="hljs-type">path</span>.<span class="hljs-keyword">join</span>(baseUrl, <span class="hljs-string">&apos;responsive&apos;</span>) : baseUrl;
+
+    <span class="hljs-keyword">if</span> (this.<span class="hljs-keyword">options</span>.storage == <span class="hljs-string">&apos;local&apos;</span>) {
+        // <span class="hljs-keyword">if</span> upload <span class="hljs-type">path</span> does <span class="hljs-keyword">not</span> exist, <span class="hljs-keyword">create</span> the upload <span class="hljs-type">path</span> structure
+        !fs.existsSync(this.uploadPath) &amp;&amp; mkdirp.sync(this.uploadPath);
+    }
+
+}
+</code></pre>
+<p>Here, we defined our constructor function to accept a couple of options. We also added some default (fallback) values for these options in case they are not provided or they are invalid. You can tweak this to contain more options depending on what you want, but for this tutorial we will stick with the following options for our storage engine.</p>
+<ul>
+<li><strong class="strong">storage</strong> - The storage filesystem. Only allowed value is <code class="code--inline">&apos;local&apos;</code> for local filesystem. Defaults to <code class="code--inline">&apos;local&apos;</code>. You can implement other storage filesystems (like <code class="code--inline">Amazon S3</code>) if you wish.</li>
+<li><strong class="strong">output</strong> - The image output format. Can be <code class="code--inline">&apos;jpg&apos;</code> or <code class="code--inline">&apos;png&apos;</code>. Defaults to <code class="code--inline">&apos;png&apos;</code>.</li>
+<li><strong class="strong">greyscale</strong> - If set to <code class="code--inline">true</code>, the output image will be greyscale. Defaults to <code class="code--inline">false</code>.</li>
+<li><strong class="strong">quality</strong> - A number between 0 - 100 that determines the quality of the output image. Defaults to <code class="code--inline">70</code>.</li>
+<li><strong class="strong">square</strong> - If set to <code class="code--inline">true</code>, the image will be cropped to a square. Defaults to <code class="code--inline">false</code>.</li>
+<li><strong class="strong">threshold</strong> - A number that restricts the smallest dimension (in <code class="code--inline">px</code>) of the output image. The default value is <code class="code--inline">500</code>. If the smallest dimension of the image exceeds this number, the image is resized so that the smallest dimension is equal to the threshold.</li>
+<li><strong class="strong">responsive</strong> - If set to <code class="code--inline">true</code>, three output images of different sizes (<code class="code--inline">lg</code>, <code class="code--inline">md</code> and <code class="code--inline">sm</code>) will be created and stored in their respective folders. Defaults to <code class="code--inline">false</code>.</li>
+</ul>
+<p>Let&apos;s go ahead and implement the methods for creating the random filenames and the output stream for writing to the files.</p>
+<pre><code class="language-js">
+<span class="hljs-comment">// this generates a random cryptographic filename</span>
+AvatarStorage.prototype._generateRandomFilename = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// create pseudo random bytes</span>
+    <span class="hljs-keyword">var</span> bytes = crypto.pseudoRandomBytes(<span class="hljs-number">32</span>);
+
+    <span class="hljs-comment">// create the md5 hash of the random bytes</span>
+    <span class="hljs-keyword">var</span> checksum = crypto.createHash(<span class="hljs-string">&apos;MD5&apos;</span>).update(bytes).digest(<span class="hljs-string">&apos;hex&apos;</span>);
+
+    <span class="hljs-comment">// return as filename the hash with the output extension</span>
+    <span class="hljs-keyword">return</span> checksum + <span class="hljs-string">&apos;.&apos;</span> + <span class="hljs-keyword">this</span>.options.output;
+};
+
+<span class="hljs-comment">// this creates a Writable stream for a filepath</span>
+AvatarStorage.prototype._createOutputStream = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(filepath, cb)</span> </span>{
+
+    <span class="hljs-comment">// create a reference for this to use in local functions</span>
+    <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-comment">// create a writable stream from the filepath</span>
+    <span class="hljs-keyword">var</span> output = fs.createWriteStream(filepath);
+
+    <span class="hljs-comment">// set callback fn as handler for the error event</span>
+    output.on(<span class="hljs-string">&apos;error&apos;</span>, cb);
+
+    <span class="hljs-comment">// set handler for the finish event</span>
+    output.on(<span class="hljs-string">&apos;finish&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        cb(<span class="hljs-literal">null</span>, {
+            destination: that.uploadPath,
+            baseUrl: that.uploadBaseUrl,
+            filename: path.basename(filepath),
+            storage: that.options.storage
+        });
+    });
+
+    <span class="hljs-comment">// return the output stream</span>
+    <span class="hljs-keyword">return</span> output;
+};
+</code></pre>
+<p>Here, we use <strong class="strong">crypto</strong> to create a random md5 hash to use as filename and appended the output from the options as the file extension. We also defined our helper method to create writable stream from the given filepath and then return the stream. Notice that a callback function is required, since we are using it on the stream event handlers.</p>
+<p>Next we will implement the <code class="code--inline">_processImage()</code> method that does the actual image processing. Here is the implementation:</p>
+<pre><code class="language-js">
+<span class="hljs-comment">// this processes the Jimp image buffer</span>
+AvatarStorage.prototype._processImage = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(image, cb)</span> </span>{
+
+    <span class="hljs-comment">// create a reference for this to use in local functions</span>
+    <span class="hljs-keyword">var</span> that = this;
+
+    <span class="hljs-keyword">var</span> batch = [];
+
+    <span class="hljs-comment">// the responsive sizes</span>
+    <span class="hljs-keyword">var</span> sizes = [<span class="hljs-string">&apos;lg&apos;</span>, <span class="hljs-string">&apos;md&apos;</span>, <span class="hljs-string">&apos;sm&apos;</span>];
+
+    <span class="hljs-keyword">var</span> filename = this._generateRandomFilename();
+
+    <span class="hljs-keyword">var</span> mime = Jimp.MIME_PNG;
+
+    <span class="hljs-comment">// create a clone of the Jimp image</span>
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">clone</span> = image.<span class="hljs-keyword">clone</span>();
+
+    <span class="hljs-comment">// fetch the Jimp image dimensions</span>
+    <span class="hljs-keyword">var</span> width = <span class="hljs-keyword">clone</span>.bitmap.width;
+    <span class="hljs-keyword">var</span> height = <span class="hljs-keyword">clone</span>.bitmap.height;
+    <span class="hljs-keyword">var</span> square = Math.min(width, height);
+    <span class="hljs-keyword">var</span> threshold = this.options.threshold;
+
+    <span class="hljs-comment">// resolve the Jimp output mime type</span>
+    <span class="hljs-keyword">switch</span> (this.options.output) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;jpg&apos;</span>:
+            mime = Jimp.MIME_JPEG;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;png&apos;</span>:
+        <span class="hljs-keyword">default</span>:
+            mime = Jimp.MIME_PNG;
+            <span class="hljs-keyword">break</span>;
+    }
+
+    <span class="hljs-comment">// auto scale the image dimensions to fit the threshold requirement</span>
+    <span class="hljs-keyword">if</span> (threshold &amp;&amp; square &gt; threshold) {
+        <span class="hljs-keyword">clone</span> = (square == width) ? <span class="hljs-keyword">clone</span>.resize(threshold, Jimp.AUTO) : <span class="hljs-keyword">clone</span>.resize(Jimp.AUTO, threshold);
+    }
+
+    <span class="hljs-comment">// crop the image to a square if enabled</span>
+    <span class="hljs-keyword">if</span> (this.options.square) {
+
+        <span class="hljs-keyword">if</span> (threshold) {
+            square = Math.min(square, threshold);
+        }
+
+        <span class="hljs-comment">// fetch the new image dimensions and crop</span>
+        <span class="hljs-keyword">clone</span> = <span class="hljs-keyword">clone</span>.crop((<span class="hljs-keyword">clone</span>.bitmap.width - square) / <span class="hljs-number">2</span>, (<span class="hljs-keyword">clone</span>.bitmap.height - square) / <span class="hljs-number">2</span>, square, square);
+    }
+
+    <span class="hljs-comment">// convert the image to greyscale if enabled</span>
+    <span class="hljs-keyword">if</span> (this.options.greyscale) {
+        <span class="hljs-keyword">clone</span> = <span class="hljs-keyword">clone</span>.greyscale();
+    }
+
+    <span class="hljs-comment">// set the image output quality</span>
+    <span class="hljs-keyword">clone</span> = <span class="hljs-keyword">clone</span>.quality(this.options.quality);
+
+    <span class="hljs-keyword">if</span> (this.options.responsive) {
+
+        <span class="hljs-comment">// map through the responsive sizes and push them to the batch</span>
+        batch = _.map(sizes, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(size)</span> </span>{
+
+            <span class="hljs-keyword">var</span> outputStream;
+
+            <span class="hljs-keyword">var</span> image = <span class="hljs-keyword">null</span>;
+            <span class="hljs-keyword">var</span> filepath = filename.split(<span class="hljs-string">&apos;.&apos;</span>);
+
+            <span class="hljs-comment">// create the complete filepath and create a writable stream for it</span>
+            filepath = filepath[<span class="hljs-number">0</span>] + <span class="hljs-string">&apos;_&apos;</span> + size + <span class="hljs-string">&apos;.&apos;</span> + filepath[<span class="hljs-number">1</span>];
+            filepath = path.join(that.uploadPath, filepath);
+            outputStream = that._createOutputStream(filepath, cb);
+
+            <span class="hljs-comment">// scale the image based on the size</span>
+            <span class="hljs-keyword">switch</span> (size) {
+                <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;sm&apos;</span>:
+                    image = <span class="hljs-keyword">clone</span>.<span class="hljs-keyword">clone</span>().scale(<span class="hljs-number">0.3</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;md&apos;</span>:
+                    image = <span class="hljs-keyword">clone</span>.<span class="hljs-keyword">clone</span>().scale(<span class="hljs-number">0.7</span>);
+                    <span class="hljs-keyword">break</span>;
+                <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;lg&apos;</span>:
+                    image = <span class="hljs-keyword">clone</span>.<span class="hljs-keyword">clone</span>();
+                    <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-comment">// return an object of the stream and the Jimp image</span>
+            <span class="hljs-keyword">return</span> {
+                stream: outputStream,
+                image: image
+            };
+        });
+
+    } <span class="hljs-keyword">else</span> {
+
+        <span class="hljs-comment">// push an object of the writable stream and Jimp image to the batch</span>
+        batch.push({
+            stream: that._createOutputStream(path.join(that.uploadPath, filename), cb),
+            image: <span class="hljs-keyword">clone</span>
+        });
+
+    }
+
+    <span class="hljs-comment">// process the batch sequence</span>
+    _.each(batch, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(current)</span> </span>{
+        <span class="hljs-comment">// get the buffer of the Jimp image using the output mime type</span>
+        current.image.getBuffer(mime, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, buffer)</span> </span>{
+            <span class="hljs-keyword">if</span> (that.options.storage == <span class="hljs-string">&apos;local&apos;</span>) {
+                <span class="hljs-comment">// create a read stream from the buffer and pipe it to the output stream</span>
+                streamifier.createReadStream(buffer).pipe(current.stream);
+            }
+        });
+    });
+
+};
+</code></pre>
+<p>A lot is going on in this method but here is a summary of what it is doing:</p>
+<ul>
+<li>Generates a random filename, resolves the Jimp output image mime type and gets the image dimensions.</li>
+<li>Resize the image if required, based on the threshold requirements to ensure that the smallest dimension does not exceed the threshold.</li>
+<li>Crop the image to a square if enabled in the options.</li>
+<li>Convert the image to greyscale if enabled in the options.</li>
+<li>Set the image output quality from the options.</li>
+<li>If responsive is enabled, the image is cloned and scaled for each of the responsive sizes (<code class="code--inline">lg</code>, <code class="code--inline">md</code> and <code class="code--inline">sm</code>) and then an output stream is created using the <code class="code--inline">_createOutputStream()</code> method for each image file of the respective sizes. The filename for each size takes the format <code class="code--inline">[random_filename_hash]_[size].[output_extension]</code>. Then the image clone and the stream are put in a batch for processing.</li>
+<li>If responsive is disabled, then only the current image and an output stream for it is put in a batch for processing.</li>
+<li>Finally, each item in the batch is processed by converting the Jimp image buffer into a readable stream using <strong class="strong">streamifier</strong> and then piping the readable stream to the output stream.</li>
+</ul>
+<p>Now we will implement the remaining methods and we will be done with our storage engine.</p>
+<pre><code class="language-js">
+<span class="hljs-comment">// multer requires this for handling the uploaded file</span>
+AvatarStorage.prototype._handleFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, file, cb</span>) </span>{
+
+    <span class="hljs-comment">// create a reference for this to use in local functions</span>
+    <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+
+    <span class="hljs-comment">// create a writable stream using concat-stream that will</span>
+    <span class="hljs-comment">// concatenate all the buffers written to it and pass the</span>
+    <span class="hljs-comment">// complete buffer to a callback fn</span>
+    <span class="hljs-keyword">var</span> fileManipulate = concat(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">imageData</span>) </span>{
+
+        <span class="hljs-comment">// read the image buffer with Jimp</span>
+        <span class="hljs-comment">// it returns a promise</span>
+        Jimp.read(imageData)
+            .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">image</span>) </span>{
+                <span class="hljs-comment">// process the Jimp image buffer</span>
+                that._processImage(image, cb);
+            })
+            .catch(cb);
+    });
+
+    <span class="hljs-comment">// write the uploaded file buffer to the fileManipulate stream</span>
+    file.stream.pipe(fileManipulate);
+
+};
+
+<span class="hljs-comment">// multer requires this for destroying file</span>
+AvatarStorage.prototype._removeFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, file, cb</span>) </span>{
+
+    <span class="hljs-keyword">var</span> matches, pathsplit;
+    <span class="hljs-keyword">var</span> filename = file.filename;
+    <span class="hljs-keyword">var</span> _path = path.join(<span class="hljs-keyword">this</span>.uploadPath, filename);
+    <span class="hljs-keyword">var</span> paths = [];
+
+    <span class="hljs-comment">// delete the file properties</span>
+    <span class="hljs-keyword">delete</span> file.filename;
+    <span class="hljs-keyword">delete</span> file.destination;
+    <span class="hljs-keyword">delete</span> file.baseUrl;
+    <span class="hljs-keyword">delete</span> file.storage;
+
+    <span class="hljs-comment">// create paths for responsive images</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.responsive) {
+        pathsplit = _path.split(<span class="hljs-string">&apos;/&apos;</span>);
+        matches = pathsplit.pop().match(<span class="hljs-regexp">/^(.+?)_.+?\.(.+)$/i</span>);
+
+        <span class="hljs-keyword">if</span> (matches) {
+            paths = _.map([<span class="hljs-string">&apos;lg&apos;</span>, <span class="hljs-string">&apos;md&apos;</span>, <span class="hljs-string">&apos;sm&apos;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">size</span>) </span>{
+                <span class="hljs-keyword">return</span> pathsplit.join(<span class="hljs-string">&apos;/&apos;</span>) + <span class="hljs-string">&apos;/&apos;</span> + (matches[<span class="hljs-number">1</span>] + <span class="hljs-string">&apos;_&apos;</span> + size + <span class="hljs-string">&apos;.&apos;</span> + matches[<span class="hljs-number">2</span>]);
+            });
+        }
+    } <span class="hljs-keyword">else</span> {
+        paths = [_path];
+    }
+
+    <span class="hljs-comment">// delete the files from the filesystem</span>
+    _.each(paths, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_path</span>) </span>{
+        fs.unlink(_path, cb);
+    });
+
+};
+</code></pre>
+<p>Our storage engine is now ready for use with Multer.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Implementing the POST /upload Route</span></h2><p>Before we define the route, we will need to setup Multer for use in our route. Let&apos;s go ahead to edit the <code class="code--inline">routes/index.js</code> file to add the following:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* routes/index.js */</span>
+
+<span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;express&apos;</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+
+<span class="hljs-comment">/**
+ * CODE ADDITION
+ *
+ * The following code is added to import additional dependencies
+ * and setup Multer for use with the /upload route.
+ */</span>
+
+<span class="hljs-comment">// import multer and the AvatarStorage engine</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lodash&apos;</span>);
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">var</span> multer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;multer&apos;</span>);
+<span class="hljs-keyword">var</span> AvatarStorage = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;../helpers/AvatarStorage&apos;</span>);
+
+<span class="hljs-comment">// setup a new instance of the AvatarStorage engine</span>
+<span class="hljs-keyword">var</span> storage = AvatarStorage({
+    <span class="hljs-attr">square</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">responsive</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">greyscale</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">quality</span>: <span class="hljs-number">90</span>
+});
+
+<span class="hljs-keyword">var</span> limits = {
+    <span class="hljs-attr">files</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// allow only 1 file per request</span>
+    fileSize: <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>, <span class="hljs-comment">// 1 MB (max file size)</span>
+};
+
+<span class="hljs-keyword">var</span> fileFilter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, file, cb</span>) </span>{
+    <span class="hljs-comment">// supported image file mimetypes</span>
+    <span class="hljs-keyword">var</span> allowedMimes = [<span class="hljs-string">&apos;image/jpeg&apos;</span>, <span class="hljs-string">&apos;image/pjpeg&apos;</span>, <span class="hljs-string">&apos;image/png&apos;</span>, <span class="hljs-string">&apos;image/gif&apos;</span>];
+
+    <span class="hljs-keyword">if</span> (_.includes(allowedMimes, file.mimetype)) {
+        <span class="hljs-comment">// allow supported image files</span>
+        cb(<span class="hljs-literal">null</span>, <span class="hljs-literal">true</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// throw error for invalid files</span>
+        cb(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&apos;Invalid file type. Only jpg, png and gif image files are allowed.&apos;</span>));
+    }
+};
+
+<span class="hljs-comment">// setup multer</span>
+<span class="hljs-keyword">var</span> upload = multer({
+    <span class="hljs-attr">storage</span>: storage,
+    <span class="hljs-attr">limits</span>: limits,
+    <span class="hljs-attr">fileFilter</span>: fileFilter
+});
+
+<span class="hljs-comment">/* CODE ADDITION ENDS HERE */</span>
+</code></pre>
+<p>Here, we are enabling square cropping, responsive images and setting the threshold for our storage engine. We also add limits to our Multer configuration to ensure that the maximum file size is <code class="code--inline">1 MB</code> and to ensure that non-image files are not uploaded.</p>
+<p>Now let&apos;s add the <code class="code--inline">POST /upload</code> route as follows:</p>
+<pre><code class="language-js"><span class="hljs-comment">/* routes/index.js */</span>
+
+<span class="hljs-comment">/**
+ * CODE ADDITION
+ *
+ * The following code is added to configure the POST /upload route
+ * to upload files using the already defined Multer configuration
+ */</span>
+
+router.post(<span class="hljs-string">&apos;/upload&apos;</span>, upload.single(process.env.AVATAR_FIELD), <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
+
+    <span class="hljs-keyword">var</span> files;
+    <span class="hljs-keyword">var</span> file = req.file.filename;
+    <span class="hljs-keyword">var</span> matches = file.match(<span class="hljs-regexp">/^(.+?)_.+?\.(.+)$/i</span>);
+
+    <span class="hljs-keyword">if</span> (matches) {
+        files = _.map([<span class="hljs-string">&apos;lg&apos;</span>, <span class="hljs-string">&apos;md&apos;</span>, <span class="hljs-string">&apos;sm&apos;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">size</span>) </span>{
+            <span class="hljs-keyword">return</span> matches[<span class="hljs-number">1</span>] + <span class="hljs-string">&apos;_&apos;</span> + <span class="hljs-built_in">size</span> + <span class="hljs-string">&apos;.&apos;</span> + matches[<span class="hljs-number">2</span>];
+        });
+    } <span class="hljs-title">else</span> {
+        files = [file];
+    }
+
+    files = _.map(files, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
+        <span class="hljs-keyword">var</span> port = req.app.get(<span class="hljs-string">&apos;port&apos;</span>);
+        <span class="hljs-keyword">var</span> base = req.protocol + <span class="hljs-string">&apos;://&apos;</span> + req.hostname + (port ? <span class="hljs-string">&apos;:&apos;</span> + <span class="hljs-attribute">port</span> : <span class="hljs-string">&apos;&apos;</span>);
+        <span class="hljs-keyword">var</span> <span class="hljs-built_in">url</span> = path.join(req.file.baseUrl, file).replace(<span class="hljs-regexp">/[\\\/]+/g</span>, <span class="hljs-string">&apos;/&apos;</span>).replace(<span class="hljs-regexp">/^[\/]+/g</span>, <span class="hljs-string">&apos;&apos;</span>);
+
+        <span class="hljs-keyword">return</span> (req.file.storage == <span class="hljs-string">&apos;local&apos;</span> ? <span class="hljs-attribute">base</span> : <span class="hljs-string">&apos;&apos;</span>) + <span class="hljs-string">&apos;/&apos;</span> + <span class="hljs-built_in">url</span>;
+    });
+
+    res.json({
+        <span class="hljs-attribute">images</span>: files
+    });
+
+});
+
+<span class="hljs-comment">/* CODE ADDITION ENDS HERE */</span>
+</code></pre>
+<p>Notice how we passed the Multer upload middleware before our route handler. The <code class="code--inline">single()</code> method allows us to upload only one file that will be stored in <code class="code--inline">req.file</code>. It takes as first parameter, the name of the file input field which we access from <code class="code--inline">process.env.AVATAR_FIELD</code>.</p>
+<p>Now let&apos;s start the app again using <code class="code--inline">npm start</code>.</p>
+<pre><code class="language-sh"><span class="hljs-built_in">npm</span> start</code></pre>
+<p>Go ahead and visit <code class="code--inline">localhost:3000</code> on your browser and try to upload a photo. Here is a sample screenshot I got from testing the upload route on <a href="https://www.getpostman.com/" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Postman</a> using our current configuration options:</p>
+<p></p><figure class="image image--block"><img src="https://image.prntscr.com/image/HLz80BDBS7Gor-y8bK9SdA.jpg" alt="Postman-screen" class="image__img" title="Postman-screen"><figcaption class="image__caption">Postman-screen</figcaption></figure><p></p>
+<p>You can tweak the configuration options of the storage engine in our Multer setup to get different results.</p>
+<h2 class="heading heading--h2"><span class="heading__text">Conclusion</span></h2><p>In this tutorial, we have been able to create a custom storage engine for use with <a href="https://github.com/expressjs/multer" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Multer</a> which manipulates uploaded images using <a href="https://github.com/oliver-moran/jimp" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">Jimp</a> and then writes them to storage. For a complete code sample of this tutorial, checkout the <a href="https://github.com/gladchinda/advanced-multer-node-sourcecode" target="_blank" class="link link--a" rel="nofollow noopener noreferrer">advanced-multer-node-sourcecode</a> repository on Github.</p>
+</body></html>
